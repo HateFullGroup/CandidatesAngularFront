@@ -1,0 +1,72 @@
+.search {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+.fio {
+  margin-right: 20px;
+}
+.container input {
+  margin: 0 20px;
+}
+
+.container input[type="checkbox"] {
+  margin-right: 0;
+}
+
+.checkbox-tech {
+  width: 100px;
+  padding-top: 5px;
+  height: 20px;
+  border-radius: 20px;
+  border: 1px solid;
+  text-align: center;
+  margin: 0 10px;
+  margin-top: -5px;
+  cursor: pointer;
+  user-select: none;
+}
+.technologies {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.table table{
+  border-collapse: collapse;
+  width: 100%;
+}
+.table table th{
+  border: 1px solid;
+}
+.table table td{
+  border: 1px solid;
+  text-align: center;
+}
+.table table thead th:nth-child(1){
+  border: 1px solid;
+  width: 30px;
+}
+
+.flex-tech {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-td {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.table .tech-name {
+  margin: 0;
+  width: 60px;
+  text-align: left;
+}
+
+.lvl-box {
+  width: 15px;
+  height: 15px;
+  border: 1px solid;
+}
