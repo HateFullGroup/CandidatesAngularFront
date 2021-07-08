@@ -1,0 +1,28 @@
+<div class="auth">
+  <h1>RITG V</h1>
+  <form action="" [formGroup]="form" (ngSubmit)="submit()">
+
+    <label for="login">Логин</label>
+    <input type="text" id="login" class="input-text" formControlName="login">
+
+
+    <span class="error" *ngIf="this.form.get('login')?.errors?.required && this.form.get('login')?.touched">
+      Введите логин
+    </span>
+
+    <label for="password">Пароль</label>
+    <input type="password" id="password" class="input-text" formControlName="password">
+
+    <span class="error" *ngIf="this.form.get('password')?.errors?.required && this.form.get('password')?.touched">
+      Введите пароль
+    </span>
+
+    <span class="error" *ngIf="this.form.get('password')?.errors?.minlength && this.form.get('password')?.touched">
+      Длина пароля должна быть не менее {{this.form.get('password')?.errors?.minlength.requiredLength}}
+    </span>
+
+    <button type="submit" class="btn-submit" [disabled]="form.invalid">вход</button>
+
+    <a href="#" class="forget-pass">Забыли пароль?</a>
+  </form>
+</div>
