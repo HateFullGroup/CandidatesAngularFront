@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {TitleService} from "./shared/services/title.service";
 

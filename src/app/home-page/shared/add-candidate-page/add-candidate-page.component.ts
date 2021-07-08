@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CandidatesService} from "../services/candidates.service";
 import {KnowledgeLevels, Tech, Levels} from "../../../shared/interfaces";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {map} from "rxjs/operators";
 import {TitleService} from "../services/title.service";
 
 @Component({

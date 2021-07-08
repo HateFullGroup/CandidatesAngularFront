@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Tech, candidates, getRoot} from "../../../shared/interfaces";
+import {Tech, candidates, getCandidates, getRoot} from "../../../shared/interfaces";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
