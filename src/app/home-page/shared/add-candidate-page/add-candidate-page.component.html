@@ -1,0 +1,62 @@
+<form class="container" [formGroup]="form" (ngSubmit)="submit()">
+
+  <div class="add-candidate fio">
+    <p class="label">ФИО</p>
+    <input type="text" formControlName="fio">
+  </div>
+
+  <div class="add-candidate technology">
+    <p class="label">Технологии</p>
+    <div class="technology-level" [formGroup] = "levels">
+      <div
+        class="lvl-tech"
+        *ngFor="let tech of technology; let idx = index"
+      >
+        <p>{{tech.technology}}</p>
+        <div
+          class="choice"
+          (click)="setLevel(1, tech.technology)"
+          [ngStyle]="{backgroundColor: getLevel(tech.technology) > 0 ? tech.color : 'white'}"
+        ></div>
+        <div
+          class="choice"
+          (click)="setLevel(2, tech.technology)"
+          [ngStyle]="{backgroundColor: getLevel(tech.technology) > 1 ? tech.color : 'white'}"
+        ></div>
+        <div
+          class="choice"
+          (click)="setLevel(3, tech.technology)"
+          [ngStyle]="{backgroundColor: getLevel(tech.technology) > 2 ? tech.color : 'white'}"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-candidate work">
+    <p class="label">Место Работы</p>
+    <input type="text" formControlName="workspace">
+  </div>
+
+  <div class="add-candidate price">
+    <p class="label">З.п.</p>
+    <input type="text" formControlName="price">
+  </div>
+
+  <div class="add-candidate position">
+    <p class="label">Должность</p>
+    <input type="text" formControlName="position">
+  </div>
+
+  <div class="add-candidate description">
+    <p class="label">Описание</p>
+    <textarea name="" cols="30" rows="10" formControlName="description"></textarea>
+  </div>
+
+  <div class="add-candidate reviews">
+    <p class="label">Отзыв</p>
+    <textarea name="" cols="30" rows="10" formControlName="review"></textarea>
+  </div>
+
+  <button type="submit" >Добавить</button>
+<!--  [disabled]="form.invalid"-->
+</form>

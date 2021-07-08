@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+div, p, h1, h2, label, a {
+  font-family: 'Arial', sans-serif;
+}
+
+.auth {
+  margin: 0 auto;
+  margin-top: 15%;
+  max-width: 200px;
+
+}
+
+.auth h1 {
+  color: #333333;
+  text-align: center;
+}
+
+.auth form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth .input-form {
+  max-width: 100%;
+}
+
+.input-text {
+  height: 20px;
+}
+
+.auth form label{
+  color: #333333;
+  font-size: .9rem;
+  margin-top: .5rem;
+}
+
+.btn-submit {
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+  background-color: #169bd5;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.btn-submit:disabled{
+  background-color: #7d7878;
+  cursor: no-drop;
+}
+
+.forget-pass {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.error {
+  color: #ea4242;
+  font-size: 12px;
+}
+
+.input-text.ng-touched.ng-invalid {
+  border: 1px solid #ea4242;
+}
+
+.input-text.ng-valid {
+  border: 1px solid #000;
+}
+

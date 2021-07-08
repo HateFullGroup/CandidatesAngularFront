@@ -1,0 +1,36 @@
+.container {
+  margin: 20px;
+}
+
+.container .add-candidate .label {
+  width: 110px;
+  margin: 0;
+}
+
+.container .add-candidate {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.technology .label {
+  align-self: center;
+}
+
+.lvl-tech {
+  display: flex;
+  flex-direction: row;
+}
+
+.lvl-tech p {
+  margin: 10px;
+  width: 50px;
+}
+
+.choice {
+  width: 15px;
+  height: 15px;
+  border: 1px solid;
+  align-self: center;
+  cursor: pointer;
+}

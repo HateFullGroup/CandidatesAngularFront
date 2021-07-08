@@ -1,0 +1,49 @@
+.container {
+  margin: 20px;
+}
+
+.search {
+  margin: 0;
+  margin-right: 10px;
+  align-self: center;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-to-search {
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 100;
+  color: white;
+  background-color: #169bd5;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-to-search:hover {
+  background-color: #1178a3;
+}
+
+.search-input {
+  margin-right: 30px;
+}
+
+.table-for-tech {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.table-for-tech thead tr th, td {
+  border: 1px solid;
+  text-align: center;
+}
+
+.table-for-tech thead tr th:nth-child(1){
+  width: 100px;
+}

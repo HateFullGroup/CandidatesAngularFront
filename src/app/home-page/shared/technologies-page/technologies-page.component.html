@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="search-box">
+    <p class="search">Поиск</p>
+    <input type="text" class="search-input">
+    <button class="btn-to-search">Найти</button>
+  </div>
+
+  <table class="table-for-tech">
+    <thead>
+      <tr>
+        <th>№ п/п</th>
+        <th>НАЗВАНИЕ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tech of technology; let idx = index">
+        <td>{{idx+1}}</td>
+        <td>{{tech.technology}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
