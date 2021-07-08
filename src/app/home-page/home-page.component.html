@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="menu">
+    <img [routerLink]="['/home']" src="../../assets/Candidates.png" alt="1">
+    <img [routerLink]="'addCandidate'" src="../../assets/Add_Candidate.png" alt="1">
+    <img [routerLink]="'technologies'" src="../../assets/Tech.png" alt="1">
+    <img [routerLink]="'addTechnologies'" src="../../assets/Add_Tech.png" alt="1">
+  </div>
+  <div class="content">
+    <div class="header">
+      <p>{{titleService.getTitle()}}</p>
+      <h1>RITG V</h1>
+    </div>
+    <div class="content-block">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <p>@RITG {{date | date: 'yyyy'}}</p>
+</div>

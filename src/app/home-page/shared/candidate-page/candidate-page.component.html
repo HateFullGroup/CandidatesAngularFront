@@ -1,0 +1,68 @@
+<div class="container">
+
+  <div class="search">
+    <div class="fio">
+      <label for="fio">ФИО</label>
+      <input type="text" (input)="onInput($event)" id="fio">
+    </div>
+
+    <div class="date">
+      <label>Дата добавления</label>
+      <input type="date" min="1950-01-01" max="2050-12-31">
+      <label>-</label>
+      <input
+        type="date"
+        value="{{home.date | date: 'yyyy-MM-dd'}}"
+        min="1900-01-01"
+        max="2100-01-01"
+      >
+    </div>
+
+    <div class="technologies">
+      <label>Технологии</label>
+      <div
+        *ngFor="let tech of technologies" class="checkbox-tech"
+        (click)="onCheck(tech.technology)"
+        [ngStyle]="{
+          backgroundColor: tech.check ? '#939393' : 'white'
+        }"
+      >
+        {{tech.technology}}
+      </div>
+    </div>
+  </div>
+
+  <div class="table">
+    <table>
+
+      <thead>
+        <tr>
+          <th>№ п/п</th>
+          <th>ФИО</th>
+          <th>Дата рождения</th>
+          <th>Технологии</th>
+          <th>Описание</th>
+          <th>Просмотр</th>
+        </tr>
+      </thead>
+      <tbody>
+<!--        <tr *ngFor="let user of newCandidates">-->
+<!--          <td>{{user.id}}</td>-->
+<!--          <td>{{user.f_i_o}}</td>-->
+<!--          <td>{{user.birth_date}}</td>-->
+<!--          <td class = 'flex-tech'>-->
+<!--            <div *ngFor="let tech of user.candidatetechnology_set;" >-->
+<!--              <div class="flex-td">-->
+<!--                <p class="tech-name">{{tech.technology_name}}</p>-->
+<!--                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 0 ? 'red' : 'white'}" class="lvl-box lvl1"></div>-->
+<!--                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 1 ? 'red' : 'white'}" class="lvl-box lvl2"></div>-->
+<!--                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 2 ? 'red' : 'white'}" class="lvl-box lvl3"></div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--          <td>{{user.description}}</td>-->
+<!--        </tr>-->
+      </tbody>
+    </table>
+  </div>
+</div>

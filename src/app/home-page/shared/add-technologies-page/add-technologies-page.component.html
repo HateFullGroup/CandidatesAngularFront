@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="add">
+    <p>Название</p>
+    <input type="text" (input)="isSubmited ? '' : onInput($event)">
+  </div>
+  <p *ngIf="inBase" class="error">Данная технология уже находится в базе</p>
+  <button (click)="onSubmit()" class="btn-to-add">ДОБАВИТЬ</button>
+</div>

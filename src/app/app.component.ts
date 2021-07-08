@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AppRoutingModule} from "./app-routing.module";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'CandidatesAngularFront';
+
+  private auth!: AppRoutingModule
+
+  constructor(auth: AppRoutingModule) {
+    this.auth = auth
+  }
 }
