@@ -58,6 +58,7 @@ export interface getTechnologiesRoot {
 }
 
 export interface getCandidates {
+  id: number
   f_i_o: string
   birth_date: string
   added_at?: string

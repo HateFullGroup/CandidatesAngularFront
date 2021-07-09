@@ -1,56 +1,55 @@
 <div class="container">
 
-  <div class="search">
-    <div class="fio">
-      <label for="fio">ФИО</label>
-      <input type="text" (input)="onInput($event)" id="fio">
-    </div>
+    <div class="search">
+        <div class="fio">
+            <label for="fio">ФИО</label>
+            <input type="text" (input)="onInput($event)" id="fio">
+        </div>
 
-    <div class="date">
-      <label>Дата добавления</label>
-      <input type="date" min="1950-01-01" max="2050-12-31">
-      <label>-</label>
-      <input
-        type="date"
-        value="{{home.date | date: 'yyyy-MM-dd'}}"
-        min="1900-01-01"
-        max="2100-01-01"
-      >
-    </div>
+        <div class="date">
+            <label>Дата добавления</label>
+            <input type="date" min="1950-01-01" max="2050-12-31">
+            <label>-</label>
+            <input
+                    type="date"
+                    value="{{home.date | date: 'yyyy-MM-dd'}}"
+                    min="1900-01-01"
+                    max="2100-01-01"
+            >
+        </div>
 
-    <div class="technologies">
-      <label>Технологии</label>
-      <div
-        *ngFor="let tech of technologies" class="checkbox-tech"
-        (click)="onCheck(tech.name)"
-        [ngStyle]="{
+        <div class="technologies">
+            <label>Технологии</label>
+            <div
+                    *ngFor="let tech of technologies" class="checkbox-tech"
+                    (click)="onCheck(tech.name)"
+                    [ngStyle]="{
           backgroundColor: tech.check ? '#939393' : 'white'
         }"
-      >
-        {{tech.name}}
-      </div>
+            >
+                {{tech.name}}
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="table">
-    <table>
+    <div class="table">
+        <table>
 
-      <thead>
-        <tr>
-          <th>№ п/п</th>
-          <th>ФИО</th>
-          <th>Дата рождения</th>
-          <th>Технологии</th>
-          <th>Описание</th>
-          <th>Просмотр</th>
-        </tr>
-      </thead>
-      <tbody>
-      <app-candidate *ngFor="let candidate of candidates"
-                     [candidateInfo]="candidate"
+            <thead>
+            <tr>
+                <th>№ п/п</th>
+                <th>ФИО</th>
+                <th>Дата рождения</th>
+                <th>Технологии</th>
+                <th>Описание</th>
+                <th>Просмотр</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr app-candidate *ngFor="let candidate of newCandidates" [candidateInfo]="candidate">
 
-      > xxx </app-candidate>
-      </tbody>
-    </table>
-  </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

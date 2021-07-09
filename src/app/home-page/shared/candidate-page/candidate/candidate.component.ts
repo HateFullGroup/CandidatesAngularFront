@@ -1,14 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { candidates } from "../../../../shared/interfaces";
+import {candidates, getCandidates} from "../../../../shared/interfaces";
 
 @Component({
-  selector: 'app-candidate',
+  selector: '[app-candidate]',
   templateUrl: './candidate.component.html',
   styleUrls: ['./candidate.component.css']
 })
 export class CandidateComponent implements OnInit {
 
-  @Input('candidateInfo') candidateInfo!: candidates
+  @Input('candidateInfo') candidateInfo!: getCandidates
 
   constructor() {
 
