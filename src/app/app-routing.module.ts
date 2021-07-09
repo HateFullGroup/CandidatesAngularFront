@@ -6,15 +6,16 @@ import {CandidatePageComponent} from "./home-page/shared/candidate-page/candidat
 import {TechnologiesPageComponent} from "./home-page/shared/technologies-page/technologies-page.component";
 import {AddCandidatePageComponent} from "./home-page/shared/add-candidate-page/add-candidate-page.component";
 import {AddTechnologiesPageComponent} from "./home-page/shared/add-technologies-page/add-technologies-page.component";
+import {AuthGuard} from "./auth/guards/auth.guard";
 
 const routes: Routes = [
   {path: '', component: LoginPageComponent, pathMatch: 'full'},
-  {path: 'home', component: HomePageComponent, children: [
-      {path: '', component: CandidatePageComponent},
-      {path: 'technologies', component: TechnologiesPageComponent},
-      {path: 'addCandidate', component: AddCandidatePageComponent},
-      {path: 'addTechnologies', component: AddTechnologiesPageComponent},
-      {path: '**', redirectTo: '', component: HomePageComponent}
+  {path: 'home', component: HomePageComponent, canActivate: [AuthGuard], children: [
+      {path: '', component: CandidatePageComponent, canActivate: [AuthGuard]},
+      {path: 'technologies', component: TechnologiesPageComponent, canActivate: [AuthGuard]},
+      {path: 'addCandidate', component: AddCandidatePageComponent, canActivate: [AuthGuard]},
+      {path: 'addTechnologies', component: AddTechnologiesPageComponent, canActivate: [AuthGuard]},
+      {path: '**', redirectTo: '', component: HomePageComponent, canActivate: [AuthGuard]}
     ]},
   {path: '**', redirectTo: '', component: LoginPageComponent},
 ];

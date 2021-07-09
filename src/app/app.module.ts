@@ -13,7 +13,7 @@ import { AddCandidatePageComponent } from './home-page/shared/add-candidate-page
 import { AddTechnologiesPageComponent } from './home-page/shared/add-technologies-page/add-technologies-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import { TestComponent } from './home-page/shared/candidate-page/test/test.component';
-
+import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { TestComponent } from './home-page/shared/candidate-page/test/test.compo
         AppRoutingModule,
         ReactiveFormsModule,
         HttpClientModule,
+        AuthModule
     ],
   providers: [],
   bootstrap: [AppComponent]
