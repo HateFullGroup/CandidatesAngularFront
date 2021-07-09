@@ -1,0 +1,32 @@
+td {
+    border: 1px solid;
+}
+
+.flex-tech {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-td {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+tr .tech-name {
+    margin: 0;
+    width: 60px;
+    text-align: left;
+}
+
+.lvl-box {
+    width: 10px;
+    height: 10px;
+    border: 1px solid;
+}
+
+.flex-tech p {
+    margin: 0;
+    margin-right: 5px;
+    font-size: 13px;
+}

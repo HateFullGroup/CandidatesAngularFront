@@ -1,0 +1,14 @@
+    <td>{{idx}}</td>
+    <td>{{candidateInfo.f_i_o}}</td>
+    <td>{{candidateInfo.birth_date}}</td>
+    <td>
+        <div *ngFor="let tech of candidateInfo.candidatetechnology_set;" class='flex-tech'>
+            <div class="flex-td">
+                <p class="tech-name">{{tech.technology_name}}</p>
+                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 0 ? 'red' : 'white'}" class="lvl-box lvl1"></div>
+                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 1 ? 'red' : 'white'}" class="lvl-box lvl2"></div>
+                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 2 ? 'red' : 'white'}" class="lvl-box lvl3"></div>
+            </div>
+        </div>
+    </td>
+    <td>{{candidateInfo.description}}</td>
