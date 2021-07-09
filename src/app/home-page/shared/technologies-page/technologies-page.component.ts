@@ -19,7 +19,7 @@ export class TechnologiesPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.technology = this.all?.technologies
+    // this.technology = this.all?.technologies
   }
 
 }

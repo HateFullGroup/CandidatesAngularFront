@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {HomePageComponent} from "../../home-page.component";
-import {candidates, getCandidates, getRoot, Tech} from "../../../shared/interfaces";
+import {candidates, getCandidates, getTechnologies, getTechnologiesRoot, getRoot, Tech} from "../../../shared/interfaces";
 import {CandidatesService} from "../services/candidates.service";
 import {TitleService} from "../services/title.service";
+import {Observable} from "rxjs";
+import {delay} from "rxjs/operators";
 
 @Component({
   selector: 'app-candidate-page',
@@ -14,7 +16,7 @@ export class CandidatePageComponent implements OnInit {
   name = ''
   home!: HomePageComponent
   candidatesService!: CandidatesService
-  technologies!: Tech[]
+  technologies!: getTechnologies[]
   candidates!: candidates[]
   allInformation!: getRoot
   newCandidates!: getCandidates[]
@@ -26,8 +28,9 @@ export class CandidatePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.technologies = this.candidatesService.technologies
-    this.candidates = this.candidatesService.candidates
+    // this.technologies = this.candidatesService.technologies
+    // this.allInformation = this.candidatesService.getCandidates()
+    this.fetchTechnologies()
     this.fetchCandidate()
   }
 
@@ -37,7 +40,7 @@ export class CandidatePageComponent implements OnInit {
 
   onCheck(technology: string) {
     this.technologies.map(o => {
-      if(o.technology === technology) {
+      if(o.name === technology) {
         o.check = !o.check
       }
     })
@@ -46,13 +49,18 @@ export class CandidatePageComponent implements OnInit {
   fetchCandidate() {
     this.candidatesService.getCandidates()
       .subscribe(src => {
-        this.allInformation = src
-        this.newCandidates = this.allInformation.results
-        this.allInformation.results.map(k => {
-          this.newCandidates.push(k)
-        })
+        this.newCandidates = src.results
         console.log(this.newCandidates)
       })
+  }
+
+  private fetchTechnologies() {
+    this.candidatesService.getTechnologies()
+        .subscribe(src => {
+          this.technologies = src.results
+          this.technologies.map(x => x.check = false)
+          console.log(this.technologies)
+        })
   }
 
 }
