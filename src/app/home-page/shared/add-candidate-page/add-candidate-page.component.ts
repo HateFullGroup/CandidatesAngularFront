@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CandidatesService} from "../services/candidates.service";
-import {KnowledgeLevels, Tech, Levels} from "../../../shared/interfaces";
+import {KnowledgeLevels, Tech, Levels, getTechnologies} from "../../../shared/interfaces";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {map} from "rxjs/operators";
 import {TitleService} from "../services/title.service";
@@ -12,8 +12,8 @@ import {TitleService} from "../services/title.service";
 })
 export class AddCandidatePageComponent implements OnInit {
 
-  candidates!: CandidatesService
-  technology!: Tech[]
+  candidatesService!: CandidatesService
+  technology!: getTechnologies[]
   form!: FormGroup
   levels!: FormGroup
 
@@ -33,12 +33,12 @@ export class AddCandidatePageComponent implements OnInit {
 
 
   constructor(candidates: CandidatesService, title: TitleService) {
-    this.candidates = candidates
+    this.candidatesService = candidates
     title.setTitle('Добавление кандидата')
   }
 
   ngOnInit(): void {
-    this.technology = this.candidates.technologies
+    this.fetchTechnologies()
     this.levels = new FormGroup({})
     this.knowledgeLevels.map(klvl => {
       this.levels.addControl(klvl.name, new FormControl(0))
@@ -88,4 +88,13 @@ export class AddCandidatePageComponent implements OnInit {
   getLevel(tech: string): any{
     return this.setLevels.find(x => x.technology === tech)?.level
   }
+
+  private fetchTechnologies() {
+    this.candidatesService.getTechnologies()
+        .subscribe(src => {
+          this.technology = src.results
+          console.log(this.technology)
+        })
+  }
+
 }

@@ -12,21 +12,21 @@
         class="lvl-tech"
         *ngFor="let tech of technology; let idx = index"
       >
-        <p>{{tech.technology}}</p>
+        <p>{{tech.name}}</p>
         <div
           class="choice"
-          (click)="setLevel(1, tech.technology)"
-          [ngStyle]="{backgroundColor: getLevel(tech.technology) > 0 ? tech.color : 'white'}"
+          (click)="setLevel(1, tech.name)"
+          [ngStyle]="{backgroundColor: getLevel(tech.name) > 0 ? 'red' : 'white'}"
         ></div>
         <div
           class="choice"
-          (click)="setLevel(2, tech.technology)"
-          [ngStyle]="{backgroundColor: getLevel(tech.technology) > 1 ? tech.color : 'white'}"
+          (click)="setLevel(2, tech.name)"
+          [ngStyle]="{backgroundColor: getLevel(tech.name) > 1 ? 'red' : 'white'}"
         ></div>
         <div
           class="choice"
-          (click)="setLevel(3, tech.technology)"
-          [ngStyle]="{backgroundColor: getLevel(tech.technology) > 2 ? tech.color : 'white'}"
+          (click)="setLevel(3, tech.name)"
+          [ngStyle]="{backgroundColor: getLevel(tech.name) > 2 ? 'red' : 'white'}"
         ></div>
       </div>
     </div>

@@ -18,9 +18,9 @@ export interface TechForUser {
 
 export interface candidates {
   id: number
-  fio: string
-  date: string
-  technologies: TechForUser[]
+  f_i_o: string
+  birth_date: string
+  technologies: Technology[]
   description: string
   more?: string
 }
@@ -36,20 +36,31 @@ export interface Levels {
 }
 
 export interface Technology {
-  technology_name: string
-  knowledge_level: number
+  name: string
+  level: number
+
 }
 
 export interface getRoot {
+  results: getCandidates[]
   count: number
   next: string
   previous: string
-  results: getCandidates[]
+}
+
+
+
+export interface getTechnologiesRoot {
+  results: getTechnologies[]
+  count: number
+  next: string
+  previous: string
 }
 
 export interface getCandidates {
   f_i_o: string
   birth_date: string
+  added_at?: string
   description: string
   phone_number: string
   feedback: string
@@ -57,4 +68,10 @@ export interface getCandidates {
   salary: number
   job_position: string
   candidatetechnology_set: Technology[]
+}
+
+export interface getTechnologies {
+  id: number
+  name: string
+  check?: boolean
 }

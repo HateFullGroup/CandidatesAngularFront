@@ -22,12 +22,12 @@
       <label>Технологии</label>
       <div
         *ngFor="let tech of technologies" class="checkbox-tech"
-        (click)="onCheck(tech.technology)"
+        (click)="onCheck(tech.name)"
         [ngStyle]="{
           backgroundColor: tech.check ? '#939393' : 'white'
         }"
       >
-        {{tech.technology}}
+        {{tech.name}}
       </div>
     </div>
   </div>
@@ -46,22 +46,10 @@
         </tr>
       </thead>
       <tbody>
-<!--        <tr *ngFor="let user of newCandidates">-->
-<!--          <td>{{user.id}}</td>-->
-<!--          <td>{{user.f_i_o}}</td>-->
-<!--          <td>{{user.birth_date}}</td>-->
-<!--          <td class = 'flex-tech'>-->
-<!--            <div *ngFor="let tech of user.candidatetechnology_set;" >-->
-<!--              <div class="flex-td">-->
-<!--                <p class="tech-name">{{tech.technology_name}}</p>-->
-<!--                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 0 ? 'red' : 'white'}" class="lvl-box lvl1"></div>-->
-<!--                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 1 ? 'red' : 'white'}" class="lvl-box lvl2"></div>-->
-<!--                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 2 ? 'red' : 'white'}" class="lvl-box lvl3"></div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--          <td>{{user.description}}</td>-->
-<!--        </tr>-->
+      <app-candidate *ngFor="let candidate of candidates"
+                     [candidateInfo]="candidate"
+
+      > xxx </app-candidate>
       </tbody>
     </table>
   </div>

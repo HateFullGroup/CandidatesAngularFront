@@ -22,7 +22,7 @@ export class AddTechnologiesPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.technologies = this.all.technologies
+    // this.technologies = this.all.technologies
   }
 
   onSubmit() {
