@@ -12,7 +12,6 @@ import { TechnologiesPageComponent } from './home-page/shared/technologies-page/
 import { AddCandidatePageComponent } from './home-page/shared/add-candidate-page/add-candidate-page.component';
 import { AddTechnologiesPageComponent } from './home-page/shared/add-technologies-page/add-technologies-page.component';
 import {HttpClientModule} from "@angular/common/http";
-import { TestComponent } from './home-page/shared/candidate-page/test/test.component';
 
 
 @NgModule({
@@ -25,7 +24,6 @@ import { TestComponent } from './home-page/shared/candidate-page/test/test.compo
     AddCandidatePageComponent,
     AddTechnologiesPageComponent,
     CandidateComponent,
-    TestComponent,
   ],
     imports: [
         BrowserModule,
