@@ -47,3 +47,10 @@
 .table-for-tech thead tr th:nth-child(1){
   width: 100px;
 }
+
+.edit-tech {
+  cursor: pointer;
+}
+.edit-tech:hover {
+  color: #169bd5;
+}

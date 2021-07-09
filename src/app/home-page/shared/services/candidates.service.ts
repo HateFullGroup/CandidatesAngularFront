@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import { getRootCandidates, getTechnologiesRoot, postCandidate} from "../../../shared/interfaces";
+import {getRootCandidates, getTechnologiesRoot, postAddTechnology, postCandidate} from "../../../shared/interfaces";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
@@ -23,5 +23,13 @@ export class CandidatesService {
 
   postCandidate(post: postCandidate): Observable<postCandidate> {
     return this.http.post<postCandidate>('https://candidates-django-back.herokuapp.com/api/candidate/', post)
+  }
+
+  postTechnology(post: any): Observable<postAddTechnology> {
+    return this.http.post<postAddTechnology>('https://candidates-django-back.herokuapp.com/api/technology/', post)
+  }
+
+  putTechnology(put: any, id: number): Observable<postAddTechnology> {
+    return this.http.put<postAddTechnology>(`https://candidates-django-back.herokuapp.com/api/technology/${id}`, put)
   }
 }

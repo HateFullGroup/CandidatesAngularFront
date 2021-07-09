@@ -18,7 +18,7 @@
 
 .btn-to-add {
   margin-top: 20px;
-  width: 100px;
+  padding: 5px;
   height: 30px;
   cursor: pointer;
   font-size: 15px;
@@ -34,7 +34,15 @@
 }
 
 .error {
-  margin: 10px 0;
+  margin: 0;
+  margin-top: 10px;
   font-size: 12px;
   color: red;
+}
+
+.done {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #31d240;
 }

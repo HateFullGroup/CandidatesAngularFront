@@ -1,8 +1,11 @@
 <div class="container">
   <div class="add">
     <p>Название</p>
-    <input type="text" (input)="isSubmited ? '' : onInput($event)">
+    <input type="text" (input)="isSubmited ? '' : onInput($event)" [value]="editByName">
   </div>
   <p *ngIf="inBase" class="error">Данная технология уже находится в базе</p>
-  <button (click)="onSubmit()" class="btn-to-add">ДОБАВИТЬ</button>
+  <p *ngIf="completedAdd" class="done">Технология успешно добавлена</p>
+  <p *ngIf="completedEdit" class="done">Технология успешно отредактирована</p>
+  <button *ngIf="!edition" (click)="onSubmit()" class="btn-to-add">ДОБАВИТЬ</button>
+  <button *ngIf="edition" (click)="onEdit()" class="btn-to-add" [disabled]="disableBtn">РЕДАКТИРОВАТЬ</button>
 </div>

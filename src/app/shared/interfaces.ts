@@ -96,3 +96,8 @@ export interface getRootTechnologies {
   next: string
   previous: string
 }
+
+export interface postAddTechnology {
+  id?: number
+  name: string
+}
