@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HomePageComponent} from "../../home-page.component";
-import {candidates, getCandidates, getTechnologies, getTechnologiesRoot, getRoot, Tech} from "../../../shared/interfaces";
+import {candidates, getCandidates, getTechnologies, getTechnologiesRoot, getRootCandidates, Tech} from "../../../shared/interfaces";
 import {CandidatesService} from "../services/candidates.service";
 import {TitleService} from "../services/title.service";
 import {Observable} from "rxjs";
@@ -18,7 +18,7 @@ export class CandidatePageComponent implements OnInit {
   candidatesService!: CandidatesService
   technologies!: getTechnologies[]
   candidates!: candidates[]
-  allInformation!: getRoot
+  allInformation!: getRootCandidates
   newCandidates!: getCandidates[]
 
   constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService) {

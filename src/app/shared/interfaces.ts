@@ -1,5 +1,5 @@
 export interface User {
-  login: string,
+  username: string
   password: string
 }
 
@@ -9,13 +9,7 @@ export interface Tech {
   color?: string
   id: number
 }
-
-export interface TechForUser {
-  technology: string
-  level: number
-  color: string
-}
-
+//
 export interface candidates {
   id: number
   f_i_o: string
@@ -40,7 +34,7 @@ export interface Technology {
   knowledge_level: number
 }
 
-export interface getRoot {
+export interface getRootCandidates {
   results: getCandidates[]
   count: number
   next: string
@@ -74,4 +68,31 @@ export interface getTechnologies {
   id: number
   name: string
   check?: boolean
+  knowledge_level?: number
+}
+
+export interface postTechnology {
+  technology: number
+  knowledge_level: number
+}
+
+export interface postCandidate {
+  id?: number
+  f_i_o: string
+  birth_date?: string
+  added_at: string
+  description: string
+  phone_number: string
+  feedback: string
+  place_of_employment: string
+  salary: number
+  job_position: string
+  candidatetechnology_set: postTechnology[]
+}
+
+export interface getRootTechnologies {
+  results: getCandidates[]
+  count: number
+  next: string
+  previous: string
 }
