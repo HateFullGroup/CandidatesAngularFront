@@ -36,8 +36,9 @@ export interface Levels {
 }
 
 export interface Technology {
-  technology_name: string
-  knowledge_level: number
+  name: string
+  level: number
+
 }
 
 export interface getRoot {
@@ -57,10 +58,10 @@ export interface getTechnologiesRoot {
 }
 
 export interface getCandidates {
-  id?: number
+  id: number
   f_i_o: string
-  birth_date?: string
-  added_at: string
+  birth_date: string
+  added_at?: string
   description: string
   phone_number: string
   feedback: string
@@ -74,24 +75,4 @@ export interface getTechnologies {
   id: number
   name: string
   check?: boolean
-  knowledge_level?: number
-}
-
-export interface postTechnology {
-  technology: number
-  knowledge_level: number
-}
-
-export interface postCandidate {
-  id?: number
-  f_i_o: string
-  birth_date?: string
-  added_at: string
-  description: string
-  phone_number: string
-  feedback: string
-  place_of_employment: string
-  salary: number
-  job_position: string
-  candidatetechnology_set: postTechnology[]
 }

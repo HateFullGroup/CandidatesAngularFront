@@ -1,14 +1,20 @@
-    <td>{{idx}}</td>
+<!--<tr>-->
+    <!--    <h2>{{post.title}}</h2>-->
+    <!--    <p>{{post.id}} : {{post.text}}</p>-->
+    <!--    <button (click)="destroyPost()" class="btn">&times;</button>-->
+    <td>{{candidateInfo.id}}</td>
     <td>{{candidateInfo.f_i_o}}</td>
     <td>{{candidateInfo.birth_date}}</td>
-    <td>
-        <div *ngFor="let tech of candidateInfo.candidatetechnology_set;" class='flex-tech'>
+    <td class='flex-tech'>
+        <div *ngFor="let tech of candidateInfo.candidatetechnology_set;">
             <div class="flex-td">
-                <p class="tech-name">{{tech.technology_name}}</p>
-                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 0 ? 'red' : 'white'}" class="lvl-box lvl1"></div>
-                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 1 ? 'red' : 'white'}" class="lvl-box lvl2"></div>
-                <div [ngStyle]="{backgroundColor: tech.knowledge_level > 2 ? 'red' : 'white'}" class="lvl-box lvl3"></div>
+                <p class="tech-name">{{tech.name}}</p>
+                <div [ngStyle]="{backgroundColor: tech.level > 0 ? 'red' : 'white'}" class="lvl-box lvl1"></div>
+                <div [ngStyle]="{backgroundColor: tech.level > 1 ? 'red' : 'white'}" class="lvl-box lvl2"></div>
+                <div [ngStyle]="{backgroundColor: tech.level > 2 ? 'red' : 'white'}" class="lvl-box lvl3"></div>
             </div>
         </div>
     </td>
     <td>{{candidateInfo.description}}</td>
+<!--    <ng-content></ng-content>-->
+<!--</tr>-->

@@ -9,14 +9,13 @@ import {candidates, getCandidates} from "../../../../shared/interfaces";
 export class CandidateComponent implements OnInit {
 
   @Input('candidateInfo') candidateInfo!: getCandidates
-  @Input('idx') idx!: number
 
   constructor() {
 
   }
 
   ngOnInit(): void {
-
+    console.log(this.candidateInfo)
   }
 
 }

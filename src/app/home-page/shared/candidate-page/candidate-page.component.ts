@@ -4,7 +4,6 @@ import {candidates, getCandidates, getTechnologies, getTechnologiesRoot, getRoot
 import {CandidatesService} from "../services/candidates.service";
 import {TitleService} from "../services/title.service";
 import {Observable} from "rxjs";
-import {delay} from "rxjs/operators";
 
 @Component({
   selector: 'app-candidate-page',
@@ -50,6 +49,12 @@ export class CandidatePageComponent implements OnInit {
     this.candidatesService.getCandidates()
       .subscribe(src => {
         this.newCandidates = src.results
+        // this.allInformation = {}
+        // this.allInformation = src
+        // this.newCandidates = this.allInformation.results
+        // this.allInformation.results.map(k => {
+        //   this.newCandidates.push(k)
+        // })
         console.log(this.newCandidates)
       })
   }
