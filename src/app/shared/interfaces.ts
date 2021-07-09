@@ -1,5 +1,5 @@
 export interface User {
-  username: string,
+  login: string,
   password: string
 }
 
@@ -36,9 +36,8 @@ export interface Levels {
 }
 
 export interface Technology {
-  name: string
-  level: number
-
+  technology_name: string
+  knowledge_level: number
 }
 
 export interface getRoot {
@@ -58,10 +57,10 @@ export interface getTechnologiesRoot {
 }
 
 export interface getCandidates {
-  id: number
+  id?: number
   f_i_o: string
-  birth_date: string
-  added_at?: string
+  birth_date?: string
+  added_at: string
   description: string
   phone_number: string
   feedback: string

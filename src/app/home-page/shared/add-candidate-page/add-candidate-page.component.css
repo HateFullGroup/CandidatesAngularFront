@@ -3,7 +3,7 @@
 }
 
 .container .add-candidate .label {
-  width: 110px;
+  width: 150px;
   margin: 0;
 }
 
@@ -24,7 +24,6 @@
 
 .lvl-tech p {
   margin: 10px;
-  width: 50px;
 }
 
 .choice {
