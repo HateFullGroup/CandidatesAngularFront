@@ -3,7 +3,7 @@
     <div class="search">
         <div class="fio">
             <label for="fio">ФИО</label>
-            <input type="text" [(ngModel)]="fioQuery"  id="fio">
+            <input type="text" [(ngModel)]="fioQuery" id="fio">
         </div>
 
         <div class="date">
@@ -21,7 +21,10 @@
         <div class="technologies">
             <label>Технологии</label>
             <div
-                    *ngFor="let tech of technologies" class="checkbox-tech"
+                    *ngFor="let tech of technologies; let idx = index;trackBy:trackByIdx" class="checkbox-tech"
+                    [(ngModel)]="technologies[idx].check"
+
+                    ngDefaultControl
                     (click)="onCheck(tech.name)"
                     [ngStyle]="{
           backgroundColor: tech.check ? '#939393' : 'white'
@@ -46,7 +49,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr app-candidate *ngFor="let candidate of newCandidates | fioSearch:'f_i_o':fioQuery; let idx = index" [candidateInfo]="candidate" [idx] = "idx+1">
+            <tr app-candidate *ngFor="let candidate of (newCandidates | fioSearch:fioQuery) | techSearch: technologies; let idx = index"
+                [candidateInfo]="candidate" [idx]="idx+1">
 
             </tr>
             </tbody>

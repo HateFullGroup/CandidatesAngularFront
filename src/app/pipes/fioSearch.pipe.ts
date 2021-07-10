@@ -5,12 +5,11 @@ import {getCandidates} from "../shared/interfaces";
     name: 'fioSearch'
 })
 export class fioSearchPipe implements PipeTransform {
-    public transform(value: getCandidates[], key: string, term: string) {
-        if (!term) return value;
-        const regex = new RegExp(term, 'gi');
-        return (value || []).filter(item => {
-            // @ts-ignore
-            return item.hasOwnProperty(key) && regex.test(item[key]);
+    public transform(candidates: getCandidates[], query: string) {
+        if (!query) return candidates;
+        const regex = new RegExp(query, 'gi');
+        return (candidates || []).filter(c => {
+            return regex.test(c['f_i_o']);
         });
     }
 }

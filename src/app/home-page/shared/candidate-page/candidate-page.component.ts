@@ -22,6 +22,7 @@ export class CandidatePageComponent implements OnInit {
   newCandidates!: getCandidates[]
   fioQuery!: string;
 
+
   constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService) {
     this.home = home
     this.candidatesService = candidatesService
@@ -51,7 +52,7 @@ export class CandidatePageComponent implements OnInit {
     this.candidatesService.getCandidates()
       .subscribe(src => {
         this.newCandidates = src.results
-        console.log(this.newCandidates)
+        // console.log(this.newCandidates)
       })
   }
 
@@ -59,9 +60,13 @@ export class CandidatePageComponent implements OnInit {
     this.candidatesService.getTechnologies()
         .subscribe(src => {
           this.technologies = src.results
-          this.technologies.map(x => x.check = false)
-          console.log(this.technologies)
+          this.technologies.map(x => x.check = true)
+          // console.log(this.technologies)
         })
+  }
+
+  trackByIdx(index: number, obj: any): any {
+    return index
   }
 
 }

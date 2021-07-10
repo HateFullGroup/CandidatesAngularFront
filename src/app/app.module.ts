@@ -15,6 +15,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { TestComponent } from './home-page/shared/candidate-page/test/test.component';
 import {AuthModule} from "./auth/auth.module";
 import {fioSearchPipe} from "./pipes/fioSearch.pipe";
+import {TechSearchPipe} from "./pipes/techSearch.pipe";
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import {fioSearchPipe} from "./pipes/fioSearch.pipe";
         CandidateComponent,
         TestComponent,
         fioSearchPipe,
+        TechSearchPipe
     ],
     imports: [
         BrowserModule,
