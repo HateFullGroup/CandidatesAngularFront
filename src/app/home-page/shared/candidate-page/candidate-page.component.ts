@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {HomePageComponent} from "../../home-page.component";
 import {candidates, getCandidates, getTechnologies, getTechnologiesRoot, getRootCandidates, Tech} from "../../../shared/interfaces";
 import {CandidatesService} from "../services/candidates.service";
@@ -20,6 +20,7 @@ export class CandidatePageComponent implements OnInit {
   candidates!: candidates[]
   allInformation!: getRootCandidates
   newCandidates!: getCandidates[]
+  fioQuery!: string;
 
   constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService) {
     this.home = home
@@ -64,3 +65,5 @@ export class CandidatePageComponent implements OnInit {
   }
 
 }
+
+

@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import { CandidatePageComponent } from './home-page/shared/candidate-page/candidate-page.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CandidatePageComponent} from './home-page/shared/candidate-page/candidate-page.component';
 import { CandidateComponent } from './home-page/shared/candidate-page/candidate/candidate.component';
 import { TechnologiesPageComponent } from './home-page/shared/technologies-page/technologies-page.component';
 import { AddCandidatePageComponent } from './home-page/shared/add-candidate-page/add-candidate-page.component';
@@ -14,25 +14,28 @@ import { AddTechnologiesPageComponent } from './home-page/shared/add-technologie
 import {HttpClientModule} from "@angular/common/http";
 import { TestComponent } from './home-page/shared/candidate-page/test/test.component';
 import {AuthModule} from "./auth/auth.module";
+import {fioSearchPipe} from "./pipes/fioSearch.pipe";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomePageComponent,
-    LoginPageComponent,
-    CandidatePageComponent,
-    TechnologiesPageComponent,
-    AddCandidatePageComponent,
-    AddTechnologiesPageComponent,
-    CandidateComponent,
-    TestComponent,
-  ],
+    declarations: [
+        AppComponent,
+        HomePageComponent,
+        LoginPageComponent,
+        CandidatePageComponent,
+        TechnologiesPageComponent,
+        AddCandidatePageComponent,
+        AddTechnologiesPageComponent,
+        CandidateComponent,
+        TestComponent,
+        fioSearchPipe,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AuthModule
+        AuthModule,
+        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
