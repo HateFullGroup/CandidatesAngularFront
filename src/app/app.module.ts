@@ -14,7 +14,7 @@ import { AddTechnologiesPageComponent } from './home-page/shared/add-technologie
 import {HttpClientModule} from "@angular/common/http";
 import { TestComponent } from './home-page/shared/candidate-page/test/test.component';
 import {AuthModule} from "./auth/auth.module";
-import {fioSearchPipe} from "./pipes/fioSearch.pipe";
+import {TextSearchPipe} from "./pipes/textSearch.pipe";
 import {TechSearchPipe} from "./pipes/techSearch.pipe";
 
 @NgModule({
@@ -28,8 +28,8 @@ import {TechSearchPipe} from "./pipes/techSearch.pipe";
         AddTechnologiesPageComponent,
         CandidateComponent,
         TestComponent,
-        fioSearchPipe,
-        TechSearchPipe
+        TextSearchPipe,
+        TechSearchPipe,
     ],
     imports: [
         BrowserModule,
