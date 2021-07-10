@@ -52,7 +52,7 @@ export class CandidatePageComponent implements OnInit {
     this.candidatesService.getCandidates()
       .subscribe(src => {
         this.newCandidates = src.results
-        // console.log(this.newCandidates)
+        console.log(this.newCandidates)
       })
   }
 
@@ -61,7 +61,7 @@ export class CandidatePageComponent implements OnInit {
         .subscribe(src => {
           this.technologies = src.results
           this.technologies.map(x => x.check = true)
-          // console.log(this.technologies)
+          console.log(this.technologies)
         })
   }
 
