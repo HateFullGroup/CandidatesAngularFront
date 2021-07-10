@@ -10,7 +10,11 @@ export class TechSearchPipe implements PipeTransform {
 
         if (!candidates) return
         if (!technologies) return candidates;
-        let activeTechnologies : string[] = technologies.filter(t => t.check).map(t => t.name)
-        return candidates.filter(c => c.candidatetechnology_set.some(t => activeTechnologies.includes(t.technology_name)))
+        let disabledTechnologies : string[] = technologies.filter(t => !t.check).map(t => t.name)
+        let newCandidates = candidates.map(c => {
+            c.candidatetechnology_set = c.candidatetechnology_set.filter(t => !disabledTechnologies.includes(t.technology_name))
+            return c
+        })
+        return newCandidates.filter(c => c.candidatetechnology_set.length)
     }
 }

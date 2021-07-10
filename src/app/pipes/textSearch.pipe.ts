@@ -7,11 +7,11 @@ import {getCandidates} from "../shared/interfaces";
 export class TextSearchPipe implements PipeTransform {
     public transform(value: any[], key: string, term: string) {
 
-        if (!term) return value;
-        const regex = new RegExp(term, 'gi');
-        return (value || []).filter(item => {
-            // @ts-ignore
-            return item.hasOwnProperty(key) && regex.test(item[key]);
-        });
+        if (!term || !term.trim()) {
+            return value
+        }
+        return value.filter(item => {
+            return item[key].toLowerCase().includes(term.toLowerCase())
+        })
     }
 }
