@@ -5,6 +5,7 @@ import {CandidatesService} from "../services/candidates.service";
 import {TitleService} from "../services/title.service";
 import {Observable} from "rxjs";
 import {delay} from "rxjs/operators";
+import {NgbdDatepickerRange} from "./ngbd-datepicker-range/ngbd-datepicker-range.component";
 
 @Component({
   selector: 'app-candidate-page',
@@ -12,7 +13,7 @@ import {delay} from "rxjs/operators";
   styleUrls: ['./candidate-page.component.css']
 })
 export class CandidatePageComponent implements OnInit {
-
+  ngbdDatepickerRange!: NgbdDatepickerRange
   name = ''
   home!: HomePageComponent
   candidatesService!: CandidatesService
@@ -21,11 +22,14 @@ export class CandidatePageComponent implements OnInit {
   allInformation!: getRootCandidates
   newCandidates!: getCandidates[]
   fioQuery!: string;
-
+  dates: any;
+  datepickerRange: any;
+  
 
   constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService) {
     this.home = home
     this.candidatesService = candidatesService
+
     title.setTitle('Кандидаты')
   }
 

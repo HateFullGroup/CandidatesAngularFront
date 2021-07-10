@@ -14,8 +14,12 @@ import { AddTechnologiesPageComponent } from './home-page/shared/add-technologie
 import {HttpClientModule} from "@angular/common/http";
 import { TestComponent } from './home-page/shared/candidate-page/test/test.component';
 import {AuthModule} from "./auth/auth.module";
+// import {MatDatepickerModule} from '@angular/materinjjal/datepicker';
+import {NgbDatepicker, NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {fioSearchPipe} from "./pipes/fioSearch.pipe";
 import {TechSearchPipe} from "./pipes/techSearch.pipe";
+import { NgbdDatepickerRangeComponent } from './home-page/shared/candidate-page/ngbd-datepicker-range/ngbd-datepicker-range.component';
+// import {NgbdDatepickerRangeModule} from "./home-page/shared/candidate-page/ngbd-datepicker-range/ngbd-datepicker-range.module";
 
 @NgModule({
     declarations: [
@@ -29,7 +33,8 @@ import {TechSearchPipe} from "./pipes/techSearch.pipe";
         CandidateComponent,
         TestComponent,
         fioSearchPipe,
-        TechSearchPipe
+        TechSearchPipe,
+        NgbdDatepickerRangeComponent
     ],
     imports: [
         BrowserModule,
@@ -37,7 +42,10 @@ import {TechSearchPipe} from "./pipes/techSearch.pipe";
         ReactiveFormsModule,
         HttpClientModule,
         AuthModule,
-        FormsModule
+        FormsModule,
+        NgbDatepickerModule,
+        // NgbdDatepickerRangeModule
+        // MatDatepickerModule
     ],
   providers: [],
   bootstrap: [AppComponent]
