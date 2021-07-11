@@ -4,8 +4,8 @@
         <mat-form-field class="search-form-field">
             <input matInput
                    placeholder="ФИО"
-                   (keyup)="applyFilter()"
-                   [formControl]="fioInput"
+                   (keyup)="applyFioFilter()"
+                   [(ngModel)]="fioQuery"
             />
             <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="fioQuery"
                     (click)="onFioSearchClear()">
@@ -22,7 +22,7 @@
                             [rangePicker]="picker"
                             [min]="min"
                             [max]="max"
-                            formGroupName="birth_date"
+                            formGroupName="daterange"
                     >
                         <input matStartDate placeholder="Начало" formControlName="start">
                         <input matEndDate placeholder="Конец" formControlName="end">

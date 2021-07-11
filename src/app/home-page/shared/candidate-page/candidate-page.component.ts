@@ -25,7 +25,7 @@ export class CandidatePageComponent implements OnInit {
   disabledTechnologies: string[] = []
   // candidates!: candidates[]
   // allInformation!: getRootCandidates
-  // newCandidates!: getCandidates[]
+  allCandidates!: getCandidates[]
   fioQuery!: string
   dateForm!: FormGroup
   fioInput!: FormControl;
@@ -60,24 +60,17 @@ export class CandidatePageComponent implements OnInit {
 
     this.fioInput = new FormControl()
     this.dateForm = this.fb.group({
-      birth_date: new FormGroup({
+      daterange: new FormGroup({
         start: new FormControl(),
         end: new FormControl(),
       }),
     })
-    this.filterTerms = {
-      'f_i_o': this.fioInput,
-      'birth_date': this.dateForm
-    }
-
-    this.filterFunctions = {
-      'f_i_o': function (value: string, query: string) {
-        return value.toLowerCase().indexOf(query.trim().toLowerCase()) != -1
-      },
-      'birth_date': function(value: string, query: FormGroup) {
-        return
-      }
-    }
+    this.dateForm.valueChanges.subscribe((v) => {
+      this.applyDateFilter()
+    });
+    this.fioInput.valueChanges.subscribe((v) => {
+      this.applyFioFilter()
+    });
     // this.technologies = this.candidatesService.technologies
     // this.allInformation = this.candidatesService.getCandidates()
     this.fetchTechnologies()
@@ -97,28 +90,20 @@ export class CandidatePageComponent implements OnInit {
       this.disabledTechnologies = this.disabledTechnologies.filter(t => t != technology)
     }
     this.technologies[ind].check = !this.technologies[ind].check
-    // this.technologies.map(o => {
-    //   if(o.name === technology) {
-    //     o.check = !o.check
-    //   }
-    // })
+
   }
-
-
-  // filterFunctions['f_i_']
 
 
   fetchCandidate() {
     this.candidatesService.getCandidates()
       .subscribe(src => {
-        // this.newCandidates = src.results
+        this.allCandidates = src.results
         this.candidatesData = new MatTableDataSource(src.results)
         this.candidatesData.sort = this.sort
         this.candidatesData.paginator = this.paginator
         this.candidatesData.filterPredicate = (data, filter) => {
           return this.displayedColumns.some(ele => {
-            // return ele == 'f_i_o' && data[ele].toLowerCase().indexOf(filter) != -1
-            (ele in this.filterFunctions) && (this.filterFunctions[ele](data[ele]))
+            return (ele == 'f_i_o') && (data[ele].toLowerCase().indexOf(filter) != -1)
           })
         }
         console.log(src)
@@ -142,21 +127,18 @@ export class CandidatePageComponent implements OnInit {
     this.fioQuery = ''
   }
 
-  applyFilter() {
-    // this.candidatesData.filter = this.fioQuery.trim().toLowerCase()
-    // for (let candidate of this.candidatesData.data) {
-    //   for (let term in candidate) {
-    //     if (term in this.filterFunctions) {
-    //       this.filterFunctions[term](candidate[term], this.filterTerms[term].value)
-    //     }
-    //   }
-    // }
-    if (this.candidatesData.filter == '1') {
-      this.candidatesData.filter = '0'
-    }
-    else {
-      this.candidatesData.filter = '1'
-    }
+  applyFioFilter() {
+    this.candidatesData.filter = this.fioQuery.trim().toLowerCase()
+  }
+
+  applyDateFilter() {
+    this.candidatesData.data = JSON.parse(JSON.stringify(this.allCandidates))
+    this.candidatesData.data = this.candidatesData.data.filter(e=> {
+      let start: any = Date.parse(this.dateForm.value.daterange.start)
+      let end: any = Date.parse(this.dateForm.value.daterange.end)
+      let addedAt: any = Date.parse(e.added_at)
+      return (addedAt >= start) && (addedAt <= end)
+    })
   }
 
 }
