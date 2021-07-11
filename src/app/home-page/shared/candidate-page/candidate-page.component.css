@@ -5,7 +5,10 @@
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
-  max-width: 800px;
+  flex-direction: column;
+  max-width: 50%;
+  /*max-width: 800px;*/
+  /*max-width: min-content;*/
 }
 .fio {
   margin-right: 20px;
@@ -18,22 +21,29 @@
   margin-right: 0;
 }
 
-.checkbox-tech {
-  width: 100px;
-  padding-top: 5px;
-  height: 20px;
-  border-radius: 20px;
-  border: 1px solid;
-  text-align: center;
-  margin: 0 10px;
-  margin-top: -5px;
-  cursor: pointer;
-  user-select: none;
-}
 .technologies {
   margin-top: 20px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.checkbox-tech {
+  /*width: 100px;*/
+  /*padding-top: 5px;*/
+  /*height: 20px;*/
+  /*border-radius: 20px;*/
+  /*border: 1px solid;*/
+  /*text-align: center;*/
+  /*margin: 0 10px;*/
+  /*margin-top: -5px;*/
+  cursor: pointer;
+  user-select: none;
+}
+
+.technologies > button {
+  margin: 1% 3%;
 }
 .table table{
   border-collapse: collapse;
@@ -82,3 +92,4 @@ mat-footer-row mat-footer-cell {
   justify-content: center;
   font-style: italic;
 }
+

@@ -28,6 +28,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSortModule} from "@angular/material/sort";
 import {MatInputModule} from "@angular/material/input";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 @NgModule({
     declarations: [
         AppComponent,
@@ -60,7 +62,9 @@ import {MatInputModule} from "@angular/material/input";
         MatButtonModule,
         MatSortModule,
         MatInputModule,
-        FormsModule
+        FormsModule,
+        MatRadioModule,
+        MatCheckboxModule
     ],
   providers: [
       {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},

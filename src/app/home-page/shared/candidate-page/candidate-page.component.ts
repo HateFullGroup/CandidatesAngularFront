@@ -22,11 +22,12 @@ export class CandidatePageComponent implements OnInit {
   home!: HomePageComponent
   candidatesService!: CandidatesService
   technologies!: getTechnologies[]
+  disabledTechnologies: string[] = []
   // candidates!: candidates[]
   allInformation!: getRootCandidates
   // newCandidates!: getCandidates[]
   fioQuery!: string
-  dateForm!: FormGroup
+  searchForm!: FormGroup
   min = new Date(2000, 1, 1)
   max = new Date()
   startAt = new Date(2014, 1, 1)
@@ -38,6 +39,7 @@ export class CandidatePageComponent implements OnInit {
   @ViewChild(MatDateRangePicker) private rangePicker!: MatDateRangePicker<Date>;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService, private fb: FormBuilder) {
     this.home = home
     this.candidatesService = candidatesService
@@ -45,7 +47,7 @@ export class CandidatePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dateForm = this.fb.group({
+    this.searchForm = this.fb.group({
       daterange: new FormGroup({
         start: new FormControl(),
         end: new FormControl(),
@@ -62,11 +64,19 @@ export class CandidatePageComponent implements OnInit {
   }
 
   onCheck(technology: string) {
-    this.technologies.map(o => {
-      if(o.name === technology) {
-        o.check = !o.check
-      }
-    })
+    let ind: number = this.technologies.findIndex(t => t.name === technology)
+    if (this.technologies[ind].check) {
+      this.disabledTechnologies.push(technology)
+    }
+    else {
+      this.disabledTechnologies = this.disabledTechnologies.filter(t => t != technology)
+    }
+    this.technologies[ind].check = !this.technologies[ind].check
+    // this.technologies.map(o => {
+    //   if(o.name === technology) {
+    //     o.check = !o.check
+    //   }
+    // })
   }
 
   fetchCandidate() {
@@ -76,6 +86,11 @@ export class CandidatePageComponent implements OnInit {
         this.candidatesData = new MatTableDataSource(src.results)
         this.candidatesData.sort = this.sort
         this.candidatesData.paginator = this.paginator
+        this.candidatesData.filterPredicate = (data, filter) => {
+          return this.displayedColumns.some(ele => {
+            return ele == 'f_i_o' && data[ele].toLowerCase().indexOf(filter) != -1
+          })
+        }
         console.log(src)
       })
   }
@@ -93,7 +108,13 @@ export class CandidatePageComponent implements OnInit {
     return index
   }
 
+  onFioSearchClear() {
+    this.fioQuery = ''
+  }
 
+  applyFilter() {
+    this.candidatesData.filter = this.fioQuery.trim().toLowerCase()
+  }
 
 }
 

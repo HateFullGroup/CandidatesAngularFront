@@ -1,35 +1,16 @@
 <div class="container">
 
     <div class="search">
-        <div class="fio">
-<!--            <label for="fio">ФИО</label>-->
-<!--            <input type="text" [(ngModel)]="fioQuery" id="fio">-->
+        <form [formGroup]="searchForm">
             <mat-form-field class="search-form-field">
-                <input matInput [(ngModel)]="fioQuery" placeholder="ФИО" />
-                <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <input matInput [(ngModel)]="fioQuery" placeholder="ФИО" (keyup)="applyFilter()"/>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="fioQuery"
+                        (click)="onFioSearchClear()">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
-        </div>
+            <div class="date ng-star-inserted">
 
-
-        <div class="date ng-star-inserted">
-            <!--            <label>Дата добавления</label>-->
-            <!--            <input-->
-
-            <!--                    type="date"-->
-            <!--                    value="{{home.date | date: 'yyyy-MM-dd'}}"-->
-            <!--                    min="1950-01-01"-->
-            <!--                    max="2050-12-31">-->
-            <!--            <label>-</label>-->
-            <!--            <input-->
-
-            <!--                    type="date"-->
-            <!--                    value="{{home.date | date: 'yyyy-MM-dd'}}"-->
-            <!--                    min="1900-01-01"-->
-            <!--                    max="2100-01-01"-->
-            <!--            >-->
-            <form [formGroup]="dateForm">
                 <mat-form-field appearance="fill">
                     <mat-label>Дата добавления</mat-label>
                     <mat-date-range-input
@@ -47,23 +28,24 @@
                         [startAt]="startAt"
                     ></mat-date-range-picker>
                 </mat-form-field>
-            </form>
-        </div>
 
+            </div>
+        </form>
         <div class="technologies">
             <label>Технологии</label>
-            <div
+            <button mat-raised-button
                     *ngFor="let tech of technologies; let idx = index;trackBy:trackByIdx" class="checkbox-tech"
                     [(ngModel)]="technologies[idx].check"
 
                     ngDefaultControl
                     (click)="onCheck(tech.name)"
                     [ngStyle]="{
-          backgroundColor: tech.check ? '#939393' : 'white'
+          backgroundColor: tech.check ? '#3f51b5' : 'white',
+          color: tech.check ? 'white' : 'black'
         }"
             >
                 {{tech.name}}
-            </div>
+            </button>
         </div>
     </div>
 
@@ -91,18 +73,18 @@
     <!--    </div>-->
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="candidatesData" matSort>
-            <ng-container matColumnDef="f_i_o" >
+            <ng-container matColumnDef="f_i_o">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>ФИО</th>
                 <td mat-cell *matCellDef="let element">{{element.f_i_o}}</td>
             </ng-container>
-            <ng-container matColumnDef="birth_date" >
+            <ng-container matColumnDef="birth_date">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Дата рождения</th>
                 <td mat-cell *matCellDef="let element">{{element.birth_date | date: 'dd.MM.yyyy' }}</td>
             </ng-container>
-            <ng-container matColumnDef="candidatetechnology_set" >
+            <ng-container matColumnDef="candidatetechnology_set">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Технологии</th>
                 <td mat-cell *matCellDef="let element">
-                    <div *ngFor="let tech of element.candidatetechnology_set;" class='flex-tech'>
+                    <div *ngFor="let tech of element.candidatetechnology_set | techSearch:disabledTechnologies;" class='flex-tech'>
                         <div class="flex-td">
                             <p class="tech-name">{{tech.technology_name}}</p>
                             <div [ngStyle]="{backgroundColor: tech.knowledge_level > 0 ? 'red' : 'white'}"
@@ -115,17 +97,19 @@
                     </div>
                 </td>
             </ng-container>
-            <ng-container matColumnDef="description" >
+            <ng-container matColumnDef="description">
                 <th mat-header-cell *matHeaderCellDef>Описание</th>
                 <td mat-cell *matCellDef="let element">{{element.description}}</td>
             </ng-container>
-            <ng-container matColumnDef="details" >
+            <ng-container matColumnDef="details">
                 <th mat-header-cell *matHeaderCellDef>Подробнее</th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button><mat-icon>launch</mat-icon></button>
+                    <button mat-icon-button>
+                        <mat-icon>launch</mat-icon>
+                    </button>
                 </td>
             </ng-container>
-            <ng-container matColumnDef="loading" >
+            <ng-container matColumnDef="loading">
                 <th mat-footer-cell *matFooterCellDef colspan="5">
                     Загрузка...
                 </th>
