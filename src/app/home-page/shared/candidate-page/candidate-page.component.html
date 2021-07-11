@@ -1,24 +1,28 @@
 <div class="container">
 
     <div class="search">
+        <mat-form-field class="search-form-field">
+            <input matInput
+                   placeholder="ФИО"
+                   (keyup)="applyFilter()"
+                   [formControl]="fioInput"
+            />
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="fioQuery"
+                    (click)="onFioSearchClear()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
 
-            <mat-form-field class="search-form-field">
-                <input matInput [(ngModel)]="fioQuery" placeholder="ФИО" (keyup)="applyFilter()"/>
-                <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="fioQuery"
-                        (click)="onFioSearchClear()">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
+        <div class="date ng-star-inserted">
+            <form [formGroup]="dateForm">
 
-            <div class="date ng-star-inserted">
-                <form [formGroup]="filterTerms.birth_date">
                 <mat-form-field>
                     <mat-label>Дата добавления</mat-label>
                     <mat-date-range-input
                             [rangePicker]="picker"
                             [min]="min"
                             [max]="max"
-                            formGroupName="daterange"
+                            formGroupName="birth_date"
                     >
                         <input matStartDate placeholder="Начало" formControlName="start">
                         <input matEndDate placeholder="Конец" formControlName="end">
@@ -29,8 +33,8 @@
                         [startAt]="startAt"
                     ></mat-date-range-picker>
                 </mat-form-field>
-        </form>
-            </div>
+            </form>
+        </div>
 
         <div class="technologies">
             <label>Технологии</label>
@@ -85,7 +89,8 @@
             <ng-container matColumnDef="candidatetechnology_set">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Технологии</th>
                 <td mat-cell *matCellDef="let element">
-                    <div *ngFor="let tech of element.candidatetechnology_set | techSearch:disabledTechnologies;" class='flex-tech'>
+                    <div *ngFor="let tech of element.candidatetechnology_set | techSearch:disabledTechnologies;"
+                         class='flex-tech'>
                         <div class="flex-td">
                             <p class="tech-name">{{tech.technology_name}}</p>
                             <div [ngStyle]="{backgroundColor: tech.knowledge_level > 0 ? 'red' : 'white'}"

@@ -27,7 +27,8 @@ export class CandidatePageComponent implements OnInit {
   // allInformation!: getRootCandidates
   // newCandidates!: getCandidates[]
   fioQuery!: string
-  searchForm!: FormGroup
+  dateForm!: FormGroup
+  fioInput!: FormControl;
   min = new Date(2000, 1, 1)
   max = new Date()
   startAt = new Date(2014, 1, 1)
@@ -56,16 +57,19 @@ export class CandidatePageComponent implements OnInit {
     //     end: new FormControl(),
     //   }),
     // })
-    this.filterTerms = {
-      'f_i_o': this.fioQuery,
-      'birth_date': this.fb.group({
-        daterange: new FormGroup({
-          start: new FormControl(),
-          end: new FormControl(),
-        }),
-      }),
 
+    this.fioInput = new FormControl()
+    this.dateForm = this.fb.group({
+      birth_date: new FormGroup({
+        start: new FormControl(),
+        end: new FormControl(),
+      }),
+    })
+    this.filterTerms = {
+      'f_i_o': this.fioInput,
+      'birth_date': this.dateForm
     }
+
     this.filterFunctions = {
       'f_i_o': function (value: string, query: string) {
         return value.toLowerCase().indexOf(query.trim().toLowerCase()) != -1
@@ -103,6 +107,7 @@ export class CandidatePageComponent implements OnInit {
 
   // filterFunctions['f_i_']
 
+
   fetchCandidate() {
     this.candidatesService.getCandidates()
       .subscribe(src => {
@@ -113,7 +118,7 @@ export class CandidatePageComponent implements OnInit {
         this.candidatesData.filterPredicate = (data, filter) => {
           return this.displayedColumns.some(ele => {
             // return ele == 'f_i_o' && data[ele].toLowerCase().indexOf(filter) != -1
-            ele in this.filterFunctions && this.filterFunctions[ele](data[ele])
+            (ele in this.filterFunctions) && (this.filterFunctions[ele](data[ele]))
           })
         }
         console.log(src)
@@ -139,15 +144,19 @@ export class CandidatePageComponent implements OnInit {
 
   applyFilter() {
     // this.candidatesData.filter = this.fioQuery.trim().toLowerCase()
-    for (let candidate of this.candidatesData.data) {
-      for (let term in candidate) {
-        if (term in this.filterFunctions) {
-          this.filterFunctions[term](candidate[term], this.filterTerms[term])
-        }
-      }
+    // for (let candidate of this.candidatesData.data) {
+    //   for (let term in candidate) {
+    //     if (term in this.filterFunctions) {
+    //       this.filterFunctions[term](candidate[term], this.filterTerms[term].value)
+    //     }
+    //   }
+    // }
+    if (this.candidatesData.filter == '1') {
+      this.candidatesData.filter = '0'
+    }
+    else {
+      this.candidatesData.filter = '1'
     }
   }
 
 }
-
-
