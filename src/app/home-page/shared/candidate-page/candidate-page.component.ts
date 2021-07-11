@@ -24,7 +24,7 @@ export class CandidatePageComponent implements OnInit {
   technologies!: getTechnologies[]
   disabledTechnologies: string[] = []
   // candidates!: candidates[]
-  allInformation!: getRootCandidates
+  // allInformation!: getRootCandidates
   // newCandidates!: getCandidates[]
   fioQuery!: string
   searchForm!: FormGroup
@@ -34,6 +34,9 @@ export class CandidatePageComponent implements OnInit {
 
   candidatesData!: MatTableDataSource<any>
   displayedColumns: string[] = ['f_i_o', 'birth_date', 'candidatetechnology_set', 'description', 'details']
+
+  filterFunctions: any
+  filterTerms: any
 
   @ViewChild(MatDateRangeInput) private rangeInput!: MatDateRangeInput<Date>;
   @ViewChild(MatDateRangePicker) private rangePicker!: MatDateRangePicker<Date>;
@@ -47,12 +50,30 @@ export class CandidatePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.searchForm = this.fb.group({
-      daterange: new FormGroup({
-        start: new FormControl(),
-        end: new FormControl(),
+    // this.searchForm = this.fb.group({
+    //   daterange: new FormGroup({
+    //     start: new FormControl(),
+    //     end: new FormControl(),
+    //   }),
+    // })
+    this.filterTerms = {
+      'f_i_o': new FormControl(),
+      'birth_date': this.fb.group({
+        daterange: new FormGroup({
+          start: new FormControl(),
+          end: new FormControl(),
+        }),
       }),
-    })
+
+    }
+    this.filterFunctions = {
+      'f_i_o': function (value: string, query: string) {
+        return value.toLowerCase().indexOf(query.trim().toLowerCase()) != -1
+      },
+      'birth_date': function(value: string, query: FormGroup) {
+        return
+      }
+    }
     // this.technologies = this.candidatesService.technologies
     // this.allInformation = this.candidatesService.getCandidates()
     this.fetchTechnologies()
@@ -79,6 +100,9 @@ export class CandidatePageComponent implements OnInit {
     // })
   }
 
+
+  // filterFunctions['f_i_']
+
   fetchCandidate() {
     this.candidatesService.getCandidates()
       .subscribe(src => {
@@ -88,7 +112,8 @@ export class CandidatePageComponent implements OnInit {
         this.candidatesData.paginator = this.paginator
         this.candidatesData.filterPredicate = (data, filter) => {
           return this.displayedColumns.some(ele => {
-            return ele == 'f_i_o' && data[ele].toLowerCase().indexOf(filter) != -1
+            // return ele == 'f_i_o' && data[ele].toLowerCase().indexOf(filter) != -1
+            ele in this.filterFunctions && this.filterFunctions[ele](data[ele])
           })
         }
         console.log(src)
@@ -113,7 +138,7 @@ export class CandidatePageComponent implements OnInit {
   }
 
   applyFilter() {
-    this.candidatesData.filter = this.fioQuery.trim().toLowerCase()
+    // this.candidatesData.filter = this.fioQuery.trim().toLowerCase()
   }
 
 }

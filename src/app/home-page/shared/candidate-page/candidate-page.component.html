@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="search">
-        <form [formGroup]="searchForm">
+
             <mat-form-field class="search-form-field">
                 <input matInput [(ngModel)]="fioQuery" placeholder="ФИО" (keyup)="applyFilter()"/>
                 <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="fioQuery"
@@ -9,9 +9,10 @@
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
-            <div class="date ng-star-inserted">
 
-                <mat-form-field appearance="fill">
+            <div class="date ng-star-inserted">
+                <form [formGroup]="filterTerms.birth_date">
+                <mat-form-field>
                     <mat-label>Дата добавления</mat-label>
                     <mat-date-range-input
                             [rangePicker]="picker"
@@ -28,9 +29,9 @@
                         [startAt]="startAt"
                     ></mat-date-range-picker>
                 </mat-form-field>
-
-            </div>
         </form>
+            </div>
+
         <div class="technologies">
             <label>Технологии</label>
             <button mat-raised-button

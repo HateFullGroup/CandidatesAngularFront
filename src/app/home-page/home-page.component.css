@@ -24,7 +24,7 @@ div, p, h1, h2, label, a {
   width: 99.9%;
   height: 5%;
   /*height: 70px;*/
-  border: 1px solid;
+  border-bottom: 1px solid;
   display: flex;
   justify-content: space-between;
   align-items: center;
