@@ -22,6 +22,9 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {MY_FORMATS} from "./config";
+import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
 @NgModule({
     declarations: [
         AppComponent,
@@ -48,6 +51,9 @@ import {MY_FORMATS} from "./config";
         MatDatepickerModule,
         MatFormFieldModule,
         MatNativeDateModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatIconModule
     ],
   providers: [
       {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},

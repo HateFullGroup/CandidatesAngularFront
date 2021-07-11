@@ -7,6 +7,7 @@ import {Observable} from "rxjs";
 import {delay} from "rxjs/operators";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MatDateRangeInput, MatDateRangePicker} from "@angular/material/datepicker";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-candidate-page',
@@ -19,14 +20,17 @@ export class CandidatePageComponent implements OnInit {
   home!: HomePageComponent
   candidatesService!: CandidatesService
   technologies!: getTechnologies[]
-  candidates!: candidates[]
+  // candidates!: candidates[]
   allInformation!: getRootCandidates
-  newCandidates!: getCandidates[]
+  // newCandidates!: getCandidates[]
   fioQuery!: string
   dateForm!: FormGroup
   min = new Date(2000, 1, 1)
   max = new Date()
   startAt = new Date(2014, 1, 1)
+
+  candidatesData!: MatTableDataSource<any>
+  displayedColumns: string[] = ['fio', 'birthDate', 'technologies', 'description']
 
   @ViewChild(MatDateRangeInput) private rangeInput!: MatDateRangeInput<Date>;
   @ViewChild(MatDateRangePicker) private rangePicker!: MatDateRangePicker<Date>;
@@ -64,8 +68,9 @@ export class CandidatePageComponent implements OnInit {
   fetchCandidate() {
     this.candidatesService.getCandidates()
       .subscribe(src => {
-        this.newCandidates = src.results
-        console.log(this.newCandidates)
+        // this.newCandidates = src.results
+        this.candidatesData = new MatTableDataSource(src.results)
+        console.log(src)
       })
   }
 
@@ -81,6 +86,8 @@ export class CandidatePageComponent implements OnInit {
   trackByIdx(index: number, obj: any): any {
     return index
   }
+
+
 
 }
 
