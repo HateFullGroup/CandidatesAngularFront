@@ -1,11 +1,13 @@
 <div class="container">
-  <div class="add">
-    <p>Название</p>
-    <input type="text" (input)="isSubmited ? '' : onInput($event)" [value]="editByName">
-  </div>
+  <mat-form-field class="add-input" appearance="outline">
+    <mat-label>Название</mat-label>
+    <input matInput type="text" (input)="isSubmited ? '' : onInput($event)" [value]="editByName">
+  </mat-form-field>
+
   <p *ngIf="inBase" class="error">Данная технология уже находится в базе</p>
   <p *ngIf="completedAdd" class="done">Технология успешно добавлена</p>
   <p *ngIf="completedEdit" class="done">Технология успешно отредактирована</p>
-  <button *ngIf="!edition" (click)="onSubmit()" class="btn-to-add">ДОБАВИТЬ</button>
-  <button *ngIf="edition" (click)="onEdit()" class="btn-to-add" [disabled]="disableBtn">РЕДАКТИРОВАТЬ</button>
+  <button mat-raised-button color="primary" *ngIf="!edition" (click)="onSubmit()" class="btn-to-add">ДОБАВИТЬ</button>
+  <button mat-raised-button color="primary" *ngIf="edition" (click)="onEdit()" class="btn-to-add" [disabled]="disableBtn">РЕДАКТИРОВАТЬ</button>
+  <button mat-raised-button color="warn" *ngIf="edition" (click)="onDelete()" class="btn-to-add" [disabled]="disableBtn">УДАЛИТЬ</button>
 </div>

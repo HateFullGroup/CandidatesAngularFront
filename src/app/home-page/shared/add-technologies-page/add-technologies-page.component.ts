@@ -1,6 +1,6 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CandidatesService} from "../services/candidates.service";
-import {getTechnologies, postAddTechnology, Tech} from "../../../shared/interfaces";
+import {getTechnologies} from "../../../shared/interfaces";
 import {TitleService} from "../services/title.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 
@@ -13,6 +13,7 @@ export class AddTechnologiesPageComponent implements OnInit{
 
   private all!: CandidatesService
   private router!: ActivatedRoute
+  routerToNavigate!: Router
 
   technologies!: getTechnologies[]
   title!: TitleService
@@ -28,10 +29,11 @@ export class AddTechnologiesPageComponent implements OnInit{
   editById: number = -1
   editByName: string | null = ''
 
-  constructor(all: CandidatesService, title: TitleService, router: ActivatedRoute) {
+  constructor(all: CandidatesService, title: TitleService, router: ActivatedRoute, routerToNavigate: Router) {
     this.router = router
     this.all = all
     this.title = title
+    this.routerToNavigate = routerToNavigate
   }
 
 
@@ -106,10 +108,17 @@ export class AddTechnologiesPageComponent implements OnInit{
     }
   }
 
+  onDelete() {
+    this.all.deleteTechnology(this.editById).subscribe(() => {
+      this.routerToNavigate.navigate(['home', 'technologies'], {queryParams: {complete: true}})
+    })
+  }
+
   fetchTechnologies() {
     this.all.getTechnologies().subscribe(src=> {
       this.technologies = src.results
     })
   }
+
 
 }
