@@ -57,7 +57,7 @@ export class CandidatePageComponent implements OnInit {
     //   }),
     // })
     this.filterTerms = {
-      'f_i_o': new FormControl(),
+      'f_i_o': this.fioQuery,
       'birth_date': this.fb.group({
         daterange: new FormGroup({
           start: new FormControl(),
@@ -139,6 +139,13 @@ export class CandidatePageComponent implements OnInit {
 
   applyFilter() {
     // this.candidatesData.filter = this.fioQuery.trim().toLowerCase()
+    for (let candidate of this.candidatesData.data) {
+      for (let term in candidate) {
+        if (term in this.filterFunctions) {
+          this.filterFunctions[term](candidate[term], this.filterTerms[term])
+        }
+      }
+    }
   }
 
 }
