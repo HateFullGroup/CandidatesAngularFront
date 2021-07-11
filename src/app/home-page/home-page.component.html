@@ -11,10 +11,7 @@
         <a href="#" class="logout" (click)="auth.logout()">Выйти</a>
     </div>
     <div class="content">
-
-        <div class="content-block">
-            <router-outlet></router-outlet>
-        </div>
+        <router-outlet></router-outlet>
     </div>
     <div class="footer">
         <p>@RITG {{date | date: 'yyyy'}}</p>
