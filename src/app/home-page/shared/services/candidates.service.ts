@@ -32,4 +32,8 @@ export class CandidatesService {
   putTechnology(put: any, id: number): Observable<postAddTechnology> {
     return this.http.put<postAddTechnology>(`https://candidates-django-back.herokuapp.com/api/technology/${id}`, put)
   }
+
+  deleteTechnology(id: number): Observable<any> {
+    return this.http.delete(`https://candidates-django-back.herokuapp.com/api/technology/${id}`)
+  }
 }

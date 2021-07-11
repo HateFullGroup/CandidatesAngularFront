@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {CandidatesService} from "../services/candidates.service";
 import {getTechnologies, Tech} from "../../../shared/interfaces";
 import {TitleService} from "../services/title.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-technologies-page',
@@ -16,13 +16,25 @@ export class TechnologiesPageComponent implements OnInit {
   searchTechnologies!: getTechnologies[]
   private router!: Router
 
+  @Input() load!: ElementRef
+
   searchInput = ''
   searchTemp = ''
+  widthLoading = 100
+  complete = false
 
-  constructor(all: CandidatesService, title: TitleService, router: Router) {
+  constructor(all: CandidatesService, title: TitleService, router: Router, query: ActivatedRoute) {
     this.router = router
     this.candidatesService = all
     title.setTitle('Технологии')
+    query.queryParams.subscribe( (params: Params) => {
+      if(!!params.complete){
+        this.complete = !!params.complete
+        setTimeout(()=>{
+          this.complete = false
+        }, 2500)
+      }
+    })
   }
 
   ngOnInit(): void {

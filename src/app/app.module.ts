@@ -32,6 +32,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from "@angular/material/grid-list";
+import {TechnologiesPageDirective} from "./home-page/shared/technologies-page/directives/technologies-page.directive";
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
         TestComponent,
         TextSearchPipe,
         TechSearchPipe,
-        DateRangeSearchPipe
+        DateRangeSearchPipe,
+        TechnologiesPageDirective
     ],
     imports: [
         BrowserModule,

@@ -54,3 +54,28 @@
 .edit-tech:hover {
   color: #169bd5;
 }
+
+.completed {
+  background-color: rgba(0, 255, 0, 0.32);
+  height: 70px;
+  width: 300px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.completed p {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.completed .loading {
+  background-color: rgba(6, 85, 250, 0.8);
+  width: 100%;
+  height: 5px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
