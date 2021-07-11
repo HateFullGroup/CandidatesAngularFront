@@ -1,85 +1,59 @@
 <div class="container">
 
     <div class="search">
-        <mat-grid-list cols="2">
-            <mat-grid-tile>
-                <mat-form-field class="search-form-field">
-                    <input matInput
-                           placeholder="ФИО"
-                           (keyup)="applyFioFilter()"
-                           [(ngModel)]="fioQuery"
-                    />
-                    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="fioQuery"
-                            (click)="onFioSearchClear()">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <div class="date ng-star-inserted">
-                    <form [formGroup]="dateForm">
+            <mat-form-field class="search-form-field">
+                <input matInput
+                       placeholder="ФИО"
+                       (keyup)="applyFioFilter()"
+                       [(ngModel)]="fioQuery"
+                />
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="fioQuery"
+                        (click)="onFioSearchClear()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <div class="date ng-star-inserted">
+                <form [formGroup]="dateForm">
 
-                        <mat-form-field>
-                            <mat-label>Дата добавления</mat-label>
-                            <mat-date-range-input
-                                    [rangePicker]="picker"
-                                    [min]="min"
-                                    [max]="max"
-                                    formGroupName="daterange"
-                            >
-                                <input matStartDate placeholder="Начало" formControlName="start">
-                                <input matEndDate placeholder="Конец" formControlName="end">
-                            </mat-date-range-input>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-date-range-picker
-                                #picker
-                                [startAt]="startAt"
-                            ></mat-date-range-picker>
-                        </mat-form-field>
-                    </form>
-                </div>
-                </mat-grid-tile>
-        </mat-grid-list>
-        <div class="technologies">
-            <label>Технологии</label>
-            <button mat-raised-button
-                    *ngFor="let tech of technologies; let idx = index;trackBy:trackByIdx" class="checkbox-tech"
-                    [(ngModel)]="technologies[idx].check"
+                    <mat-form-field>
+                        <mat-label>Дата добавления</mat-label>
+                        <mat-date-range-input
+                                [rangePicker]="picker"
+                                [min]="min"
+                                [max]="max"
+                                formGroupName="daterange"
+                        >
+                            <input matStartDate placeholder="Начало" formControlName="start">
+                            <input matEndDate placeholder="Конец" formControlName="end">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker
+                            #picker
+                            [startAt]="startAt"
+                        ></mat-date-range-picker>
+                    </mat-form-field>
+                </form>
+            </div>
+    </div>
 
-                    ngDefaultControl
-                    (click)="onCheck(tech.name)"
-                    [ngStyle]="{
+    <div class="technologies">
+        <label>Технологии</label>
+        <button mat-raised-button
+                *ngFor="let tech of technologies; let idx = index;trackBy:trackByIdx" class="checkbox-tech"
+                [(ngModel)]="technologies[idx].check"
+
+                ngDefaultControl
+                (click)="onCheck(tech.name)"
+                [ngStyle]="{
           backgroundColor: tech.check ? '#3f51b5' : 'white',
           color: tech.check ? 'white' : 'black'
         }"
-            >
-                {{tech.name}}
-            </button>
-        </div>
+        >
+            {{tech.name}}
+        </button>
     </div>
 
-    <!--    <div class="table">-->
-    <!--        <table>-->
 
-    <!--            <thead>-->
-    <!--            <tr>-->
-    <!--                <th>№ п/п</th>-->
-    <!--                <th>ФИО</th>-->
-    <!--                <th>Дата рождения</th>-->
-    <!--                <th>Технологии</th>-->
-    <!--                <th>Описание</th>-->
-    <!--                <th>Просмотр</th>-->
-    <!--            </tr>-->
-    <!--            </thead>-->
-    <!--            <tbody>-->
-    <!--            <tr app-candidate-->
-    <!--                *ngFor="let candidate of newCandidates | textSearch:'f_i_o':fioQuery | techSearch:technologies | dateRangeSearch:dateForm; let idx = index"-->
-    <!--                [candidateInfo]="candidate" [idx]="idx+1">-->
-
-    <!--            </tr>-->
-    <!--            </tbody>-->
-    <!--        </table>-->
-    <!--    </div>-->
     <div class="mat-elevation-z8 scrollTable">
         <table mat-table [dataSource]="candidatesData" matSort>
             <ng-container matColumnDef="f_i_o">
