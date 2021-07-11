@@ -1,41 +1,45 @@
 <div class="container">
 
     <div class="search">
-        <mat-form-field class="search-form-field">
-            <input matInput
-                   placeholder="ФИО"
-                   (keyup)="applyFioFilter()"
-                   [(ngModel)]="fioQuery"
-            />
-            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="fioQuery"
-                    (click)="onFioSearchClear()">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-
-        <div class="date ng-star-inserted">
-            <form [formGroup]="dateForm">
-
-                <mat-form-field>
-                    <mat-label>Дата добавления</mat-label>
-                    <mat-date-range-input
-                            [rangePicker]="picker"
-                            [min]="min"
-                            [max]="max"
-                            formGroupName="daterange"
-                    >
-                        <input matStartDate placeholder="Начало" formControlName="start">
-                        <input matEndDate placeholder="Конец" formControlName="end">
-                    </mat-date-range-input>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker
-                        #picker
-                        [startAt]="startAt"
-                    ></mat-date-range-picker>
+        <mat-grid-list cols="2" rowHeight="1:1">
+            <mat-grid-tile>
+                <mat-form-field class="search-form-field">
+                    <input matInput
+                           placeholder="ФИО"
+                           (keyup)="applyFioFilter()"
+                           [(ngModel)]="fioQuery"
+                    />
+                    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="fioQuery"
+                            (click)="onFioSearchClear()">
+                        <mat-icon>close</mat-icon>
+                    </button>
                 </mat-form-field>
-            </form>
-        </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="date ng-star-inserted">
+                    <form [formGroup]="dateForm">
 
+                        <mat-form-field>
+                            <mat-label>Дата добавления</mat-label>
+                            <mat-date-range-input
+                                    [rangePicker]="picker"
+                                    [min]="min"
+                                    [max]="max"
+                                    formGroupName="daterange"
+                            >
+                                <input matStartDate placeholder="Начало" formControlName="start">
+                                <input matEndDate placeholder="Конец" formControlName="end">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker
+                                #picker
+                                [startAt]="startAt"
+                            ></mat-date-range-picker>
+                        </mat-form-field>
+                    </form>
+                </div>
+                </mat-grid-tile>
+        </mat-grid-list>
         <div class="technologies">
             <label>Технологии</label>
             <button mat-raised-button
@@ -76,7 +80,7 @@
     <!--            </tbody>-->
     <!--        </table>-->
     <!--    </div>-->
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z8 scrollTable">
         <table mat-table [dataSource]="candidatesData" matSort>
             <ng-container matColumnDef="f_i_o">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>ФИО</th>
@@ -121,7 +125,7 @@
                 </th>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': candidatesData!=null}"></tr>
         </table>
