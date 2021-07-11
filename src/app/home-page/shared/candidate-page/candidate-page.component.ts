@@ -23,9 +23,6 @@ export class CandidatePageComponent implements OnInit {
   candidatesService!: CandidatesService
   technologies!: getTechnologies[]
   disabledTechnologies: string[] = []
-  // candidates!: candidates[]
-  // allInformation!: getRootCandidates
-  // newCandidates!: getCandidates[]
   fioQuery!: string
   searchForm!: FormGroup
   min = new Date(2000, 1, 1)

@@ -30,6 +30,9 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatChipsModule} from '@angular/material/chips';
+import {MatGridListModule} from "@angular/material/grid-list";
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -64,7 +67,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         MatInputModule,
         FormsModule,
         MatRadioModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatChipsModule,
+        MatGridListModule
     ],
   providers: [
       {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},

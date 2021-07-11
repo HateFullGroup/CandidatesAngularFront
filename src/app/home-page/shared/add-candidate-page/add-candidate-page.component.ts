@@ -1,16 +1,10 @@
 import {AfterContentInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CandidatesService} from "../services/candidates.service";
 import {
-  KnowledgeLevels,
-  Tech,
-  Levels,
   getTechnologies,
-  getCandidates,
-  Technology,
   postTechnology, postCandidate
 } from "../../../shared/interfaces";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {map} from "rxjs/operators";
 import {TitleService} from "../services/title.service";
 import {formatDate} from "@angular/common";
 
@@ -28,6 +22,7 @@ export class AddCandidatePageComponent implements OnInit, DoCheck {
   candidatetechnology_set!: FormGroup
   date!: Date
   private hasInArray = false
+  value = ''
 
   formToPost!: postCandidate
   technologiesToPost: postTechnology[] = [
@@ -95,6 +90,7 @@ export class AddCandidatePageComponent implements OnInit, DoCheck {
           birth_date: ''
         }
     )
+    this.form.markAsUntouched()
     this.technology = this.tempTechnologies
   }
 
