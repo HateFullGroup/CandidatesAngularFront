@@ -26,15 +26,15 @@
 <!--            >-->
             <form [formGroup]="dateForm">
             <mat-form-field appearance="fill">
-                <mat-label>Enter a date range</mat-label>
+                <mat-label>Дата добавления</mat-label>
                 <mat-date-range-input
                         [rangePicker]="picker"
                         [min]="min"
                         [max]="max"
                         formGroupName="daterange"
                 >
-                    <input matStartDate placeholder="Start date" formControlName="start">
-                    <input matEndDate placeholder="End date"  formControlName="end">
+                    <input matStartDate placeholder="Начало" formControlName="start">
+                    <input matEndDate placeholder="Конец"  formControlName="end">
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker
@@ -77,7 +77,7 @@
             </thead>
             <tbody>
             <tr app-candidate
-                *ngFor="let candidate of ((newCandidates | fioSearch:fioQuery) | techSearch:technologies )| dateRangeSearch:dateForm; let idx = index"
+                *ngFor="let candidate of newCandidates | fioSearch:fioQuery | techSearch:technologies | dateRangeSearch:dateForm; let idx = index"
                 [candidateInfo]="candidate" [idx]="idx+1">
 
             </tr>
