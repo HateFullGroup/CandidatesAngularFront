@@ -22,6 +22,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {MY_FORMATS} from "./config";
+import {MatInputModule} from "@angular/material/input";
 @NgModule({
     declarations: [
         AppComponent,
@@ -48,6 +49,7 @@ import {MY_FORMATS} from "./config";
         MatDatepickerModule,
         MatFormFieldModule,
         MatNativeDateModule,
+        MatInputModule,
     ],
   providers: [
       {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},

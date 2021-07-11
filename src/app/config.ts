@@ -1,5 +1,6 @@
 export const config = {
-    apiUrl: 'https:///candidates-django-back.herokuapp.com/api'
+    apiUrl: 'https://candidates-django-back.herokuapp.com/api'
+    // apiUrl: 'https://localhost/api'
 };
 
 export const MY_FORMATS = {

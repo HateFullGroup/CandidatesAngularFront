@@ -46,6 +46,7 @@ export class AddCandidatePageComponent implements OnInit, DoCheck {
 
 
     this.form = new FormGroup({
+      birth_date: new FormControl('', Validators.required),
       f_i_o: new FormControl('', Validators.required),
       phone_number: new FormControl('', Validators.required),
       place_of_employment: new FormControl('', Validators.required),
@@ -67,7 +68,7 @@ export class AddCandidatePageComponent implements OnInit, DoCheck {
     this.formToPost = {
       f_i_o: this.form.value?.f_i_o,
       added_at: formatDate(this.date, 'dd.MM.yyyy', 'en'),
-      birth_date: formatDate(this.date, 'dd.MM.yyyy', 'en'),
+      birth_date: formatDate(this.form.value.birth_date, 'dd.MM.yyyy', 'en'),
       description: this.form.value?.description,
       phone_number: this.form.value?.phone_number,
       feedback: this.form.value?.feedback,
@@ -90,7 +91,9 @@ export class AddCandidatePageComponent implements OnInit, DoCheck {
           salary: '',
           job_position: '',
           description: '',
-          feedback:''}
+          feedback:'',
+          birth_date: ''
+        }
     )
     this.technology = this.tempTechnologies
   }
