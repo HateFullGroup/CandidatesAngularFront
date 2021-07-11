@@ -1,11 +1,12 @@
-import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform, ViewChild} from '@angular/core';
 import {HomePageComponent} from "../../home-page.component";
 import {candidates, getCandidates, getTechnologies, getTechnologiesRoot, getRootCandidates, Tech} from "../../../shared/interfaces";
 import {CandidatesService} from "../services/candidates.service";
 import {TitleService} from "../services/title.service";
 import {Observable} from "rxjs";
 import {delay} from "rxjs/operators";
-import {NgbdDatepickerRange} from "./ngbd-datepicker-range/ngbd-datepicker-range.component";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {MatDateRangeInput, MatDateRangePicker} from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-candidate-page',
@@ -13,7 +14,7 @@ import {NgbdDatepickerRange} from "./ngbd-datepicker-range/ngbd-datepicker-range
   styleUrls: ['./candidate-page.component.css']
 })
 export class CandidatePageComponent implements OnInit {
-  ngbdDatepickerRange!: NgbdDatepickerRange
+
   name = ''
   home!: HomePageComponent
   candidatesService!: CandidatesService
@@ -21,19 +22,27 @@ export class CandidatePageComponent implements OnInit {
   candidates!: candidates[]
   allInformation!: getRootCandidates
   newCandidates!: getCandidates[]
-  fioQuery!: string;
-  dates: any;
-  datepickerRange: any;
-  
+  fioQuery!: string
+  dateForm!: FormGroup
+  min = new Date(2000, 1, 1)
+  max = new Date()
+  startAt = new Date(2014, 1, 1)
 
-  constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService) {
+  @ViewChild(MatDateRangeInput) private rangeInput!: MatDateRangeInput<Date>;
+  @ViewChild(MatDateRangePicker) private rangePicker!: MatDateRangePicker<Date>;
+  constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService, private fb: FormBuilder) {
     this.home = home
     this.candidatesService = candidatesService
-
     title.setTitle('Кандидаты')
   }
 
   ngOnInit(): void {
+    this.dateForm = this.fb.group({
+      daterange: new FormGroup({
+        start: new FormControl(),
+        end: new FormControl(),
+      }),
+    })
     // this.technologies = this.candidatesService.technologies
     // this.allInformation = this.candidatesService.getCandidates()
     this.fetchTechnologies()

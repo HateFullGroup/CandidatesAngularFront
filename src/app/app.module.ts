@@ -14,13 +14,14 @@ import { AddTechnologiesPageComponent } from './home-page/shared/add-technologie
 import {HttpClientModule} from "@angular/common/http";
 import { TestComponent } from './home-page/shared/candidate-page/test/test.component';
 import {AuthModule} from "./auth/auth.module";
-// import {MatDatepickerModule} from '@angular/materinjjal/datepicker';
-import {NgbDatepicker, NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {fioSearchPipe} from "./pipes/fioSearch.pipe";
 import {TechSearchPipe} from "./pipes/techSearch.pipe";
-import { NgbdDatepickerRangeComponent } from './home-page/shared/candidate-page/ngbd-datepicker-range/ngbd-datepicker-range.component';
-// import {NgbdDatepickerRangeModule} from "./home-page/shared/candidate-page/ngbd-datepicker-range/ngbd-datepicker-range.module";
-
+import {DateRangeSearchPipe} from "./pipes/dateRangeSearch";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {MY_FORMATS} from "./config";
 @NgModule({
     declarations: [
         AppComponent,
@@ -34,7 +35,7 @@ import { NgbdDatepickerRangeComponent } from './home-page/shared/candidate-page/
         TestComponent,
         fioSearchPipe,
         TechSearchPipe,
-        NgbdDatepickerRangeComponent
+        DateRangeSearchPipe
     ],
     imports: [
         BrowserModule,
@@ -43,11 +44,15 @@ import { NgbdDatepickerRangeComponent } from './home-page/shared/candidate-page/
         HttpClientModule,
         AuthModule,
         FormsModule,
-        NgbDatepickerModule,
-        // NgbdDatepickerRangeModule
-        // MatDatepickerModule
+        BrowserAnimationsModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
     ],
-  providers: [],
+  providers: [
+      {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
+      {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

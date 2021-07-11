@@ -6,69 +6,43 @@
             <input type="text" [(ngModel)]="fioQuery" id="fio">
         </div>
 
-<!--        <mat-date-range-input [rangePicker]="picker">-->
-<!--            <input matStartDate placeholder="Start date">-->
-<!--            <input matEndDate placeholder="End date">-->
-<!--        </mat-date-range-input>-->
 
-<!--        <mat-date-range-picker #picker></mat-date-range-picker>-->
-<!--        <p>Example of the range selection</p>-->
 
-<!--        <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">-->
-<!--        </ngb-datepicker>-->
+        <div class="date ng-star-inserted">
+<!--            <label>Дата добавления</label>-->
+<!--            <input-->
 
-<!--        <ng-template #t let-date let-focused="focused">-->
-<!--  <span class="custom-day"-->
-<!--        [class.focused]="focused"-->
-<!--        [class.range]="isRange(date)"-->
-<!--        [class.faded]="isHovered(date) || isInside(date)"-->
-<!--        (mouseenter)="hoveredDate = date"-->
-<!--        (mouseleave)="hoveredDate = null">-->
-<!--    {{ date.day }}-->
-<!--  </span>-->
-<!--        </ng-template>-->
+<!--                    type="date"-->
+<!--                    value="{{home.date | date: 'yyyy-MM-dd'}}"-->
+<!--                    min="1950-01-01"-->
+<!--                    max="2050-12-31">-->
+<!--            <label>-</label>-->
+<!--            <input-->
 
-<!--        <hr>-->
-
-<!--        <pre>From: {{ fromDate | json }} </pre>-->
-<!--        <pre>To: {{ toDate | json }} </pre>-->
-        <p>Example of the range selection</p>
-
-        <ngb-datepicker #dp (dateSelect)="datepickerRange.onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
-        </ngb-datepicker>
-
-        <ng-template #t let-date let-focused="focused">
-  <span class="custom-day"
-        [class.focused]="focused"
-        [class.range]="isRange(date)"
-        [class.faded]="isHovered(date) || isInside(date)"
-        (mouseenter)="hoveredDate = date"
-        (mouseleave)="hoveredDate = null">
-    {{ date.day }}
-  </span>
-        </ng-template>
-
-        <hr>
-
-        <pre>From: {{ fromDate | json }} </pre>
-        <pre>To: {{ toDate | json }} </pre>
-        <div class="date">
-            <label>Дата добавления</label>
-            <input
-                    [(ngModel)] = "dates['minDate']"
-                    type="date"
-                    value="{{home.date | date: 'yyyy-MM-dd'}}"
-                    min="1950-01-01"
-                    max="2050-12-31">
-<!--            max="2050-12-31">-->
-            <label>-</label>
-            <input
-                    #maxdate
-                    type="date"
-                    value="{{home.date | date: 'yyyy-MM-dd'}}"
-                    min="1900-01-01"
-                    max="2100-01-01"
-            >
+<!--                    type="date"-->
+<!--                    value="{{home.date | date: 'yyyy-MM-dd'}}"-->
+<!--                    min="1900-01-01"-->
+<!--                    max="2100-01-01"-->
+<!--            >-->
+            <form [formGroup]="dateForm">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input
+                        [rangePicker]="picker"
+                        [min]="min"
+                        [max]="max"
+                        formGroupName="daterange"
+                >
+                    <input matStartDate placeholder="Start date" formControlName="start">
+                    <input matEndDate placeholder="End date"  formControlName="end">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker
+                    #picker
+                    [startAt]="startAt"
+                ></mat-date-range-picker>
+            </mat-form-field>
+            </form>
         </div>
 
         <div class="technologies">
@@ -103,7 +77,7 @@
             </thead>
             <tbody>
             <tr app-candidate
-                *ngFor="let candidate of (newCandidates | fioSearch:fioQuery) | techSearch: technologies; let idx = index"
+                *ngFor="let candidate of ((newCandidates | fioSearch:fioQuery) | techSearch:technologies )| dateRangeSearch:dateForm; let idx = index"
                 [candidateInfo]="candidate" [idx]="idx+1">
 
             </tr>
