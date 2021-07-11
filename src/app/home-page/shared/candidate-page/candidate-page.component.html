@@ -6,16 +6,43 @@
             <input type="text" [(ngModel)]="fioQuery" id="fio">
         </div>
 
-        <div class="date">
-            <label>Дата добавления</label>
-            <input type="date" min="1950-01-01" max="2050-12-31">
-            <label>-</label>
-            <input
-                    type="date"
-                    value="{{home.date | date: 'yyyy-MM-dd'}}"
-                    min="1900-01-01"
-                    max="2100-01-01"
-            >
+
+
+        <div class="date ng-star-inserted">
+<!--            <label>Дата добавления</label>-->
+<!--            <input-->
+
+<!--                    type="date"-->
+<!--                    value="{{home.date | date: 'yyyy-MM-dd'}}"-->
+<!--                    min="1950-01-01"-->
+<!--                    max="2050-12-31">-->
+<!--            <label>-</label>-->
+<!--            <input-->
+
+<!--                    type="date"-->
+<!--                    value="{{home.date | date: 'yyyy-MM-dd'}}"-->
+<!--                    min="1900-01-01"-->
+<!--                    max="2100-01-01"-->
+<!--            >-->
+            <form [formGroup]="dateForm">
+            <mat-form-field appearance="fill">
+                <mat-label>Дата добавления</mat-label>
+                <mat-date-range-input
+                        [rangePicker]="picker"
+                        [min]="min"
+                        [max]="max"
+                        formGroupName="daterange"
+                >
+                    <input matStartDate placeholder="Начало" formControlName="start">
+                    <input matEndDate placeholder="Конец"  formControlName="end">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker
+                    #picker
+                    [startAt]="startAt"
+                ></mat-date-range-picker>
+            </mat-form-field>
+            </form>
         </div>
 
         <div class="technologies">
@@ -49,7 +76,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr app-candidate *ngFor="let candidate of (newCandidates | textSearch: 'f_i_o':fioQuery) | techSearch:technologies; let idx = index"
+            <tr app-candidate
+                *ngFor="let candidate of newCandidates | textSearch:'f_i_o':fioQuery | techSearch:technologies | dateRangeSearch:dateForm; let idx = index"
                 [candidateInfo]="candidate" [idx]="idx+1">
 
             </tr>

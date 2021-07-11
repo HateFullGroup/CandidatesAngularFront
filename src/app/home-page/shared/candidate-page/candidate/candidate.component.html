@@ -1,6 +1,6 @@
     <td>{{idx}}</td>
     <td>{{candidateInfo.f_i_o}}</td>
-    <td>{{candidateInfo.birth_date}}</td>
+    <td>{{candidateInfo.birth_date | date: 'dd.mm.yyyy'}}</td>
     <td>
         <div *ngFor="let tech of candidateInfo.candidatetechnology_set;" class='flex-tech'>
             <div class="flex-td">

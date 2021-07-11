@@ -16,7 +16,12 @@ import { TestComponent } from './home-page/shared/candidate-page/test/test.compo
 import {AuthModule} from "./auth/auth.module";
 import {TextSearchPipe} from "./pipes/textSearch.pipe";
 import {TechSearchPipe} from "./pipes/techSearch.pipe";
-
+import {DateRangeSearchPipe} from "./pipes/dateRangeSearch";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {MY_FORMATS} from "./config";
 @NgModule({
     declarations: [
         AppComponent,
@@ -30,6 +35,7 @@ import {TechSearchPipe} from "./pipes/techSearch.pipe";
         TestComponent,
         TextSearchPipe,
         TechSearchPipe,
+        DateRangeSearchPipe
     ],
     imports: [
         BrowserModule,
@@ -37,9 +43,16 @@ import {TechSearchPipe} from "./pipes/techSearch.pipe";
         ReactiveFormsModule,
         HttpClientModule,
         AuthModule,
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
     ],
-  providers: [],
+  providers: [
+      {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
+      {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
