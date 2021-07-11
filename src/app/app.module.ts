@@ -25,6 +25,9 @@ import {MY_FORMATS} from "./config";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatSortModule} from "@angular/material/sort";
+import {MatInputModule} from "@angular/material/input";
 @NgModule({
     declarations: [
         AppComponent,
@@ -53,7 +56,11 @@ import {MatIconModule} from "@angular/material/icon";
         MatNativeDateModule,
         MatPaginatorModule,
         MatTableModule,
-        MatIconModule
+        MatIconModule,
+        MatButtonModule,
+        MatSortModule,
+        MatInputModule,
+        FormsModule
     ],
   providers: [
       {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},

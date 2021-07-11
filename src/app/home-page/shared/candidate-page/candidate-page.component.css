@@ -73,3 +73,12 @@
   height: 15px;
   border: 1px solid;
 }
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}

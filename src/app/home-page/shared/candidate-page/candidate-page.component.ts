@@ -8,6 +8,8 @@ import {delay} from "rxjs/operators";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MatDateRangeInput, MatDateRangePicker} from "@angular/material/datepicker";
 import {MatTableDataSource} from "@angular/material/table";
+import {MatSort} from "@angular/material/sort";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-candidate-page',
@@ -30,10 +32,12 @@ export class CandidatePageComponent implements OnInit {
   startAt = new Date(2014, 1, 1)
 
   candidatesData!: MatTableDataSource<any>
-  displayedColumns: string[] = ['fio', 'birthDate', 'technologies', 'description']
+  displayedColumns: string[] = ['f_i_o', 'birth_date', 'candidatetechnology_set', 'description', 'details']
 
   @ViewChild(MatDateRangeInput) private rangeInput!: MatDateRangeInput<Date>;
   @ViewChild(MatDateRangePicker) private rangePicker!: MatDateRangePicker<Date>;
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService, private fb: FormBuilder) {
     this.home = home
     this.candidatesService = candidatesService
@@ -70,6 +74,8 @@ export class CandidatePageComponent implements OnInit {
       .subscribe(src => {
         // this.newCandidates = src.results
         this.candidatesData = new MatTableDataSource(src.results)
+        this.candidatesData.sort = this.sort
+        this.candidatesData.paginator = this.paginator
         console.log(src)
       })
   }
