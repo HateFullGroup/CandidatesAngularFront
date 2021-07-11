@@ -1,21 +1,22 @@
 <div class="container">
-  <div class="menu">
-    <img [routerLink]="['/home']" src="../../assets/Candidates.png" alt="1">
-    <img [routerLink]="'addCandidate'" src="../../assets/Add_Candidate.png" alt="1">
-    <img [routerLink]="'technologies'" src="../../assets/Tech.png" alt="1">
-    <img [routerLink]="'addTechnologies'" src="../../assets/Add_Tech.png" alt="1">
-  </div>
-  <div class="content">
+    <div class="menu">
+        <img [routerLink]="['/home']" src="../../assets/Candidates.png" alt="1">
+        <img [routerLink]="'addCandidate'" src="../../assets/Add_Candidate.png" alt="1">
+        <img [routerLink]="'technologies'" src="../../assets/Tech.png" alt="1">
+        <img [routerLink]="'addTechnologies'" src="../../assets/Add_Tech.png" alt="1">
+    </div>
     <div class="header">
-      <img class="logo" src="http://ritg.ru/local/templates/ritg2020/images/logo-default-130x42.png" alt="RITG V">
-      <p>{{titleService.getTitle()}}</p>
-      <a href="#" class="logout" (click)="auth.logout()">Выйти</a>
+        <img class="logo" src="http://ritg.ru/local/templates/ritg2020/images/logo-default-130x42.png" alt="RITG V">
+        <p class="title">{{titleService.getTitle()}}</p>
+        <a href="#" class="logout" (click)="auth.logout()">Выйти</a>
     </div>
-    <div class="content-block">
-      <router-outlet></router-outlet>
+    <div class="content">
+
+        <div class="content-block">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-  </div>
-</div>
-<div class="footer">
-  <p>@RITG {{date | date: 'yyyy'}}</p>
+    <div class="footer">
+        <p>@RITG {{date | date: 'yyyy'}}</p>
+    </div>
 </div>

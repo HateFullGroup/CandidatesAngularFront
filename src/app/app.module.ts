@@ -22,7 +22,14 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {MY_FORMATS} from "./config";
+import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatSortModule} from "@angular/material/sort";
 import {MatInputModule} from "@angular/material/input";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 @NgModule({
     declarations: [
         AppComponent,
@@ -49,7 +56,15 @@ import {MatInputModule} from "@angular/material/input";
         MatDatepickerModule,
         MatFormFieldModule,
         MatNativeDateModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSortModule,
         MatInputModule,
+        FormsModule,
+        MatRadioModule,
+        MatCheckboxModule
     ],
   providers: [
       {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},

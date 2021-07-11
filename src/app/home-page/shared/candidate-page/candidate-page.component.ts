@@ -7,6 +7,9 @@ import {Observable} from "rxjs";
 import {delay} from "rxjs/operators";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MatDateRangeInput, MatDateRangePicker} from "@angular/material/datepicker";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatSort} from "@angular/material/sort";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-candidate-page',
@@ -19,17 +22,27 @@ export class CandidatePageComponent implements OnInit {
   home!: HomePageComponent
   candidatesService!: CandidatesService
   technologies!: getTechnologies[]
-  candidates!: candidates[]
-  allInformation!: getRootCandidates
-  newCandidates!: getCandidates[]
+  disabledTechnologies: string[] = []
+  // candidates!: candidates[]
+  // allInformation!: getRootCandidates
+  // newCandidates!: getCandidates[]
   fioQuery!: string
-  dateForm!: FormGroup
+  searchForm!: FormGroup
   min = new Date(2000, 1, 1)
   max = new Date()
   startAt = new Date(2014, 1, 1)
 
+  candidatesData!: MatTableDataSource<any>
+  displayedColumns: string[] = ['f_i_o', 'birth_date', 'candidatetechnology_set', 'description', 'details']
+
+  filterFunctions: any
+  filterTerms: any
+
   @ViewChild(MatDateRangeInput) private rangeInput!: MatDateRangeInput<Date>;
   @ViewChild(MatDateRangePicker) private rangePicker!: MatDateRangePicker<Date>;
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService, private fb: FormBuilder) {
     this.home = home
     this.candidatesService = candidatesService
@@ -37,12 +50,30 @@ export class CandidatePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dateForm = this.fb.group({
-      daterange: new FormGroup({
-        start: new FormControl(),
-        end: new FormControl(),
+    // this.searchForm = this.fb.group({
+    //   daterange: new FormGroup({
+    //     start: new FormControl(),
+    //     end: new FormControl(),
+    //   }),
+    // })
+    this.filterTerms = {
+      'f_i_o': this.fioQuery,
+      'birth_date': this.fb.group({
+        daterange: new FormGroup({
+          start: new FormControl(),
+          end: new FormControl(),
+        }),
       }),
-    })
+
+    }
+    this.filterFunctions = {
+      'f_i_o': function (value: string, query: string) {
+        return value.toLowerCase().indexOf(query.trim().toLowerCase()) != -1
+      },
+      'birth_date': function(value: string, query: FormGroup) {
+        return
+      }
+    }
     // this.technologies = this.candidatesService.technologies
     // this.allInformation = this.candidatesService.getCandidates()
     this.fetchTechnologies()
@@ -54,18 +85,38 @@ export class CandidatePageComponent implements OnInit {
   }
 
   onCheck(technology: string) {
-    this.technologies.map(o => {
-      if(o.name === technology) {
-        o.check = !o.check
-      }
-    })
+    let ind: number = this.technologies.findIndex(t => t.name === technology)
+    if (this.technologies[ind].check) {
+      this.disabledTechnologies.push(technology)
+    }
+    else {
+      this.disabledTechnologies = this.disabledTechnologies.filter(t => t != technology)
+    }
+    this.technologies[ind].check = !this.technologies[ind].check
+    // this.technologies.map(o => {
+    //   if(o.name === technology) {
+    //     o.check = !o.check
+    //   }
+    // })
   }
+
+
+  // filterFunctions['f_i_']
 
   fetchCandidate() {
     this.candidatesService.getCandidates()
       .subscribe(src => {
-        this.newCandidates = src.results
-        console.log(this.newCandidates)
+        // this.newCandidates = src.results
+        this.candidatesData = new MatTableDataSource(src.results)
+        this.candidatesData.sort = this.sort
+        this.candidatesData.paginator = this.paginator
+        this.candidatesData.filterPredicate = (data, filter) => {
+          return this.displayedColumns.some(ele => {
+            // return ele == 'f_i_o' && data[ele].toLowerCase().indexOf(filter) != -1
+            ele in this.filterFunctions && this.filterFunctions[ele](data[ele])
+          })
+        }
+        console.log(src)
       })
   }
 
@@ -80,6 +131,21 @@ export class CandidatePageComponent implements OnInit {
 
   trackByIdx(index: number, obj: any): any {
     return index
+  }
+
+  onFioSearchClear() {
+    this.fioQuery = ''
+  }
+
+  applyFilter() {
+    // this.candidatesData.filter = this.fioQuery.trim().toLowerCase()
+    for (let candidate of this.candidatesData.data) {
+      for (let term in candidate) {
+        if (term in this.filterFunctions) {
+          this.filterFunctions[term](candidate[term], this.filterTerms[term])
+        }
+      }
+    }
   }
 
 }
