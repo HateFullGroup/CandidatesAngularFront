@@ -1,53 +1,61 @@
 <form class="container" [formGroup]="form" (ngSubmit)="submit()">
 
     <!--    <mat-grid-list cols="2" rowHeight="100%">-->
-        <!--            <mat-grid-tile class="form-scroller">-->
-        <div class="form-inputs">
-            <mat-form-field class="add-candidate fio" appearance="outline">
-                <mat-label>ФИО</mat-label>
-                <input matInput type="text" formControlName="f_i_o">
-            </mat-form-field>
+    <!--            <mat-grid-tile class="form-scroller">-->
 
-            <mat-form-field class="add-candidate work" appearance="outline">
-                <mat-label>Место работы</mat-label>
-                <input matInput type="text" formControlName="place_of_employment">
-            </mat-form-field>
+    <div class="form-inputs">
+<!--        <mat-form-field [hidden]="true">-->
+<!--            <input matInput type="number" placeholder="id" formControlName="id">-->
+<!--        </mat-form-field>-->
+        <mat-form-field class="add-candidate fio" appearance="outline">
+            <mat-label>ФИО</mat-label>
+            <input matInput type="text" formControlName="f_i_o">
+        </mat-form-field>
 
-            <mat-form-field appearance="outline" class="add-candidate date">
-                <mat-label>Дата рождения</mat-label>
-                <input matInput placeholder="Дата рождения" [matDatepicker]="picker"
-                       formControlName="birth_date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+        <mat-form-field class="add-candidate work" appearance="outline">
+            <mat-label>Место работы</mat-label>
+            <input matInput type="text" formControlName="place_of_employment">
+        </mat-form-field>
 
-            <mat-form-field class="add-candidate price" appearance="outline">
-                <mat-label>З.п.</mat-label>
-                <input matInput type="text" formControlName="salary">
-            </mat-form-field>
+        <mat-form-field appearance="outline" class="add-candidate date">
+            <mat-label>Дата рождения</mat-label>
+            <input matInput placeholder="Дата рождения" [matDatepicker]="picker"
+                   formControlName="birth_date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
-            <mat-form-field class="add-candidate position" appearance="outline">
-                <mat-label>Должность</mat-label>
-                <input matInput type="text" formControlName="job_position" hideRequiredMarker>
-            </mat-form-field>
+        <mat-form-field class="add-candidate price" appearance="outline">
+            <mat-label>З.п.</mat-label>
+            <input matInput type="text" formControlName="salary">
+        </mat-form-field>
 
-            <mat-form-field class="add-candidate phone-number" appearance="outline">
-                <mat-label>Номер телефона</mat-label>
-                <input matInput type="text" formControlName="phone_number">
-            </mat-form-field>
+        <mat-form-field class="add-candidate position" appearance="outline">
+            <mat-label>Должность</mat-label>
+            <input matInput type="text" formControlName="job_position" hideRequiredMarker>
+        </mat-form-field>
 
-            <mat-form-field class="add-candidate description" appearance="outline">
-                <mat-label>Описание</mat-label>
-                <textarea matInput type="text" formControlName="description"></textarea>
-            </mat-form-field>
+        <mat-form-field class="add-candidate phone-number" appearance="outline">
+            <mat-label>Номер телефона</mat-label>
+            <input matInput type="text" formControlName="phone_number">
+        </mat-form-field>
 
-            <mat-form-field class="add-candidate feedback" appearance="outline">
-                <mat-label>Отзыв</mat-label>
-                <textarea matInput type="text" formControlName="feedback"></textarea>
-            </mat-form-field>
-            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Добавить</button>
-        </div>
-        <!--            </mat-grid-tile>-->
+        <mat-form-field class="add-candidate description" appearance="outline">
+            <mat-label>Описание</mat-label>
+            <textarea matInput type="text" formControlName="description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="add-candidate feedback" appearance="outline">
+            <mat-label>Отзыв</mat-label>
+            <textarea matInput type="text" formControlName="feedback"></textarea>
+        </mat-form-field>
+        <p *ngIf="completedAdd" class="done">Кандидат успешно добавлен</p>
+        <p *ngIf="completedEdit" class="done">Кандидат успешно отредактирован</p>
+        <button mat-raised-button color="primary" type="submit"  *ngIf="!edition" [disabled]="form.invalid">Добавить</button>
+        <button mat-raised-button color="primary" type="submit" *ngIf="edition" (click)="onEdit()" [disabled]="form.invalid"><mat-icon>edit</mat-icon></button>
+        <button mat-raised-button color="warn" *ngIf="edition" (click)="onDelete()" class="btn-to-add"><mat-icon>delete</mat-icon></button>
+    </div>
+    <!--            </mat-grid-tile>-->
     <!--        <mat-grid-tile>-->
 
     <div class="add-candidate technology">

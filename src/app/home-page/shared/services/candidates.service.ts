@@ -30,10 +30,22 @@ export class CandidatesService {
   }
 
   putTechnology(put: any, id: number): Observable<postAddTechnology> {
-    return this.http.put<postAddTechnology>(`https://candidates-django-back.herokuapp.com/api/technology/${id}`, put)
+    return this.http.put<postAddTechnology>(`https://candidates-django-back.herokuapp.com/api/technology/${id}/`, put)
   }
 
   deleteTechnology(id: number): Observable<any> {
-    return this.http.delete(`https://candidates-django-back.herokuapp.com/api/technology/${id}`)
+    return this.http.delete(`https://candidates-django-back.herokuapp.com/api/technology/${id}/`)
+  }
+
+  getCandidate(id: null | string): Observable<any> {
+    return this.http.get(`https://candidates-django-back.herokuapp.com/api/candidate/${id}/`)
+  }
+
+  putCandidate(candidate: any, id: null | string): Observable<any> {
+    return this.http.put<any>(`https://candidates-django-back.herokuapp.com/api/candidate/${id}/`, candidate)
+  }
+
+  deleteCandidate(id: null | string): Observable<any> {
+    return this.http.delete(`https://candidates-django-back.herokuapp.com/api/candidate/${id}/`)
   }
 }

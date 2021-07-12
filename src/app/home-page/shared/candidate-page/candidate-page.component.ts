@@ -10,6 +10,7 @@ import {MatDateRangeInput, MatDateRangePicker} from "@angular/material/datepicke
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-candidate-page',
@@ -43,14 +44,17 @@ export class CandidatePageComponent implements OnInit {
   @ViewChild(MatDateRangePicker) private rangePicker!: MatDateRangePicker<Date>;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  private router!: Router;
 
-  constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService, private fb: FormBuilder) {
+  constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService, private fb: FormBuilder, router: Router) {
     this.home = home
+    this.router = router
     this.candidatesService = candidatesService
     title.setTitle('Кандидаты')
   }
 
   ngOnInit(): void {
+
     // this.searchForm = this.fb.group({
     //   daterange: new FormGroup({
     //     start: new FormControl(),
@@ -141,4 +145,8 @@ export class CandidatePageComponent implements OnInit {
     })
   }
 
+  editCandidate(id: number) {
+    this.router.navigate(['home','addCandidate'], {queryParams: {id: id}})
+
+  }
 }
