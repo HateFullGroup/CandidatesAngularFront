@@ -20,9 +20,11 @@ tr .tech-name {
 }
 
 .lvl-box {
-    width: 10px;
-    height: 10px;
-    border: 1px solid;
+    /*width: 10px;*/
+    /*height: 10px;*/
+    /*border: 1px solid;*/
+    border: none;
+    border-radius: 20%;
 }
 
 .flex-tech p {

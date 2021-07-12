@@ -1,83 +1,85 @@
 <form class="container" [formGroup]="form" (ngSubmit)="submit()">
-  <mat-grid-list cols="2" rowHeight="100%">
-    <mat-grid-tile>
-      <div class="form-inputs">
-        <mat-form-field class="add-candidate fio" appearance="outline">
-          <mat-label>ФИО</mat-label>
-          <input matInput type="text" formControlName="f_i_o">
-        </mat-form-field>
 
-        <mat-form-field class="add-candidate work" appearance="outline">
-          <mat-label>Место работы</mat-label>
-          <input matInput type="text" formControlName="place_of_employment">
-        </mat-form-field>
+    <!--    <mat-grid-list cols="2" rowHeight="100%">-->
+        <!--            <mat-grid-tile class="form-scroller">-->
+        <div class="form-inputs">
+            <mat-form-field class="add-candidate fio" appearance="outline">
+                <mat-label>ФИО</mat-label>
+                <input matInput type="text" formControlName="f_i_o">
+            </mat-form-field>
 
-        <mat-form-field appearance="outline" class="add-candidate date">
-          <mat-label>Дата рождения</mat-label>
-        <input matInput  placeholder="Дата рождения" [matDatepicker]="picker" formControlName="birth_date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+            <mat-form-field class="add-candidate work" appearance="outline">
+                <mat-label>Место работы</mat-label>
+                <input matInput type="text" formControlName="place_of_employment">
+            </mat-form-field>
 
-        <mat-form-field class="add-candidate price" appearance="outline">
-          <mat-label>З.п.</mat-label>
-          <input matInput type="text" formControlName="salary">
-        </mat-form-field>
+            <mat-form-field appearance="outline" class="add-candidate date">
+                <mat-label>Дата рождения</mat-label>
+                <input matInput placeholder="Дата рождения" [matDatepicker]="picker"
+                       formControlName="birth_date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
 
-        <mat-form-field class="add-candidate position" appearance="outline" >
-          <mat-label>Должность</mat-label>
-          <input matInput type="text" formControlName="job_position" hideRequiredMarker>
-        </mat-form-field>
+            <mat-form-field class="add-candidate price" appearance="outline">
+                <mat-label>З.п.</mat-label>
+                <input matInput type="text" formControlName="salary">
+            </mat-form-field>
 
-        <mat-form-field class="add-candidate phone-number" appearance="outline">
-          <mat-label>Номер телефона</mat-label>
-          <input matInput type="text" formControlName="phone_number">
-        </mat-form-field>
+            <mat-form-field class="add-candidate position" appearance="outline">
+                <mat-label>Должность</mat-label>
+                <input matInput type="text" formControlName="job_position" hideRequiredMarker>
+            </mat-form-field>
 
-        <mat-form-field class="add-candidate description" appearance="outline">
-          <mat-label>Описание</mat-label>
-          <textarea matInput type="text" formControlName="description"></textarea>
-        </mat-form-field>
+            <mat-form-field class="add-candidate phone-number" appearance="outline">
+                <mat-label>Номер телефона</mat-label>
+                <input matInput type="text" formControlName="phone_number">
+            </mat-form-field>
 
-        <mat-form-field class="add-candidate feedback" appearance="outline">
-          <mat-label>Отзыв</mat-label>
-          <textarea matInput type="text" formControlName="feedback"></textarea>
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Добавить</button>
-      </div>
-    </mat-grid-tile>
+            <mat-form-field class="add-candidate description" appearance="outline">
+                <mat-label>Описание</mat-label>
+                <textarea matInput type="text" formControlName="description"></textarea>
+            </mat-form-field>
 
-    <mat-grid-tile>
-      <div class="add-candidate technology">
-        <p class="label">Технологии</p>
-        <div class="choice-technologies">
-          <div class="technology-level" [formGroup] = "candidatetechnology_set">
-            <div
-                    class="lvl-tech"
-                    *ngFor="let tech of technology; let idx = index"
-            >
-              <p>{{tech.name}}</p>
-              <div
-                      class="choice"
-                      (click)="setLevel(1, tech.id)"
-                      [ngStyle]="{backgroundColor: getLevel(tech.name) > 0 ? 'red' : 'white'}"
-              ></div>
-              <div
-                      class="choice"
-                      (click)="setLevel(2, tech.id)"
-                      [ngStyle]="{backgroundColor: getLevel(tech.name) > 1 ? 'red' : 'white'}"
-              ></div>
-              <div
-                      class="choice"
-                      (click)="setLevel(3, tech.id)"
-                      [ngStyle]="{backgroundColor: getLevel(tech.name) > 2 ? 'red' : 'white'}"
-              ></div>
-            </div>
-          </div>
+            <mat-form-field class="add-candidate feedback" appearance="outline">
+                <mat-label>Отзыв</mat-label>
+                <textarea matInput type="text" formControlName="feedback"></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Добавить</button>
         </div>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+        <!--            </mat-grid-tile>-->
+    <!--        <mat-grid-tile>-->
+
+    <div class="add-candidate technology">
+        <p class="label">Технологии:</p>
+        <div class="choice-technologies">
+            <div class="technology-level" [formGroup]="candidatetechnology_set">
+                <div
+                        class="lvl-tech"
+                        *ngFor="let tech of technology; let idx = index"
+                >
+                    <p>{{tech.name}}</p>
+                    <div
+                            class="choice"
+                            (click)="setLevel(1, tech.id)"
+                            [ngStyle]="{backgroundColor: getLevel(tech.name) > 0 ? '#169bd5' : 'white'}"
+                    ></div>
+                    <div
+                            class="choice"
+                            (click)="setLevel(2, tech.id)"
+                            [ngStyle]="{backgroundColor: getLevel(tech.name) > 1 ? '#169bd5' : 'white'}"
+                    ></div>
+                    <div
+                            class="choice"
+                            (click)="setLevel(3, tech.id)"
+                            [ngStyle]="{backgroundColor: getLevel(tech.name) > 2 ? '#169bd5' : 'white'}"
+                    ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--        </mat-grid-tile>-->
+    <!--    </mat-grid-list>-->
 
 
 </form>

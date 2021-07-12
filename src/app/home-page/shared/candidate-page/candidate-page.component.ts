@@ -34,7 +34,7 @@ export class CandidatePageComponent implements OnInit {
   startAt = new Date(2014, 1, 1)
 
   candidatesData!: MatTableDataSource<any>
-  displayedColumns: string[] = ['f_i_o', 'birth_date', 'candidatetechnology_set', 'description', 'details']
+  displayedColumns: string[] = ['index', 'f_i_o', 'birth_date', 'candidatetechnology_set', 'description', 'details']
 
   filterFunctions: any
   filterTerms: any

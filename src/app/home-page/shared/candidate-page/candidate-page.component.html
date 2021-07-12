@@ -37,7 +37,7 @@
     </div>
 
     <div class="technologies">
-        <label>Технологии</label>
+        <label>Технологии:</label>
         <button mat-raised-button
                 *ngFor="let tech of technologies; let idx = index;trackBy:trackByIdx" class="checkbox-tech"
                 [(ngModel)]="technologies[idx].check"
@@ -56,6 +56,10 @@
 
     <div class="mat-elevation-z8 scrollTable">
         <table mat-table [dataSource]="candidatesData" matSort>
+            <ng-container matColumnDef="index">
+                <th mat-header-cell *matHeaderCellDef>N</th>
+                <td mat-cell *matCellDef="let element; let i = index;">{{i+1}}</td>
+            </ng-container>
             <ng-container matColumnDef="f_i_o">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>ФИО</th>
                 <td mat-cell *matCellDef="let element">{{element.f_i_o}}</td>
@@ -70,12 +74,12 @@
                     <div *ngFor="let tech of element.candidatetechnology_set | techSearch:disabledTechnologies;"
                          class='flex-tech'>
                         <div class="flex-td">
-                            <p class="tech-name">{{tech.technology_name}}</p>
-                            <div [ngStyle]="{backgroundColor: tech.knowledge_level > 0 ? 'red' : 'white'}"
+                            <p class="tech-name">{{tech.technology_name}} </p>
+                            <div [ngStyle]="{backgroundColor: tech.knowledge_level > 0 ? '#169bd5' : 'white'}"
                                  class="lvl-box lvl1"></div>
-                            <div [ngStyle]="{backgroundColor: tech.knowledge_level > 1 ? 'red' : 'white'}"
+                            <div [ngStyle]="{backgroundColor: tech.knowledge_level > 1 ? '#169bd5' : 'white'}"
                                  class="lvl-box lvl2"></div>
-                            <div [ngStyle]="{backgroundColor: tech.knowledge_level > 2 ? 'red' : 'white'}"
+                            <div [ngStyle]="{backgroundColor: tech.knowledge_level > 2 ? '#169bd5' : 'white'}"
                                  class="lvl-box lvl3"></div>
                         </div>
                     </div>
