@@ -121,4 +121,8 @@
                    showFirstLastButtons
     >
     </mat-paginator>
+    <div class="completed" *ngIf="complete">
+        <p>Кандидат {{deletedCandFio}} успешно удален</p>
+        <div class="loading" (load) = '$event' cand-styles></div>
+    </div>
 </div>

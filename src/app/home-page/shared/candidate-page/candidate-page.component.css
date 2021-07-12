@@ -127,3 +127,12 @@ table {
 .tech-name {
   margin-right: 3px;
 }
+
+.completed {
+  background-color: rgba(0, 255, 0, 0.32);
+  height: 70px;
+  width: 300px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

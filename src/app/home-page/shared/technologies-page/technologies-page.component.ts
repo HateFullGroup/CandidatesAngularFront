@@ -22,6 +22,7 @@ export class TechnologiesPageComponent implements OnInit {
   searchTemp = ''
   widthLoading = 100
   complete = false
+  deletedTech!: string;
 
   constructor(all: CandidatesService, title: TitleService, router: Router, query: ActivatedRoute) {
     this.router = router
@@ -29,6 +30,7 @@ export class TechnologiesPageComponent implements OnInit {
     title.setTitle('Технологии')
     query.queryParams.subscribe( (params: Params) => {
       if(!!params.complete){
+        this.deletedTech = params.deletedTechName
         this.complete = !!params.complete
         setTimeout(()=>{
           this.complete = false

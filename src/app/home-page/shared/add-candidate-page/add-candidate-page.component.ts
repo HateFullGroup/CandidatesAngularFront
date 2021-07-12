@@ -36,7 +36,7 @@ export class AddCandidatePageComponent implements OnInit, DoCheck {
         {technology: 0, knowledge_level: 0}
     ]
     candidateId!: null | string
-
+    candidateFio!: null | string
 
     constructor(candidates: CandidatesService, private title: TitleService, private router: ActivatedRoute, public routerToNavigate: Router) {
         this.candidatesService = candidates
@@ -203,7 +203,7 @@ export class AddCandidatePageComponent implements OnInit, DoCheck {
 
     onDelete() {
         this.candidatesService.deleteCandidate(this.candidateId).subscribe(() => {
-            this.routerToNavigate.navigate(['/home'], {queryParams: {complete: true}})
+            this.routerToNavigate.navigate(['/home'], {queryParams: {complete: true, deletedCandFio: this.candidateFio}})
         })
     }
 }

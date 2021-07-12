@@ -33,6 +33,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {TechnologiesPageDirective} from "./home-page/shared/technologies-page/directives/technologies-page.directive";
+import {CandidatePageDirective} from "./home-page/shared/candidate-page/directives/candidate-page.directive";
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import {TechnologiesPageDirective} from "./home-page/shared/technologies-page/di
         TextSearchPipe,
         TechSearchPipe,
         DateRangeSearchPipe,
-        TechnologiesPageDirective
+        TechnologiesPageDirective,
+        CandidatePageDirective
     ],
     imports: [
         BrowserModule,

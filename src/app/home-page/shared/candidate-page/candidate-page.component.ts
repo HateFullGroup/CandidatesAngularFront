@@ -10,7 +10,7 @@ import {MatDateRangeInput, MatDateRangePicker} from "@angular/material/datepicke
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-candidate-page',
@@ -33,24 +33,36 @@ export class CandidatePageComponent implements OnInit {
   min = new Date(2000, 1, 1)
   max = new Date()
   startAt = new Date(2014, 1, 1)
-
+  complete = false
+  firstComplete = true
   candidatesData!: MatTableDataSource<any>
   displayedColumns: string[] = ['index', 'f_i_o', 'birth_date', 'candidatetechnology_set', 'description', 'details']
-
+  widthLoading = 100
   filterFunctions: any
   filterTerms: any
 
+  deletedCandFio!: string
   @ViewChild(MatDateRangeInput) private rangeInput!: MatDateRangeInput<Date>;
   @ViewChild(MatDateRangePicker) private rangePicker!: MatDateRangePicker<Date>;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   private router!: Router;
 
-  constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService, private fb: FormBuilder, router: Router) {
+  constructor(home: HomePageComponent, candidatesService: CandidatesService, title: TitleService, private fb: FormBuilder, router: Router, query: ActivatedRoute) {
     this.home = home
     this.router = router
     this.candidatesService = candidatesService
     title.setTitle('Кандидаты')
+    query.queryParams.subscribe( (params: Params) => {
+      if(!!params.complete && this.firstComplete){
+        this.deletedCandFio = params.deletedCandFio
+        this.complete = !!params.complete
+        setTimeout(()=>{
+          this.complete = false
+          this.firstComplete = false
+        }, 1500)
+      }
+    })
   }
 
   ngOnInit(): void {

@@ -110,7 +110,7 @@ export class AddTechnologiesPageComponent implements OnInit{
 
   onDelete() {
     this.all.deleteTechnology(this.editById).subscribe(() => {
-      this.routerToNavigate.navigate(['home', 'technologies'], {queryParams: {complete: true}})
+      this.routerToNavigate.navigate(['home', 'technologies'], {queryParams: {complete: true, deletedTechName: this.editByName}})
     })
   }
 

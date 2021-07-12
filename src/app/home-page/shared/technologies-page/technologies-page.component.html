@@ -20,7 +20,7 @@
     </tbody>
   </table>
   <div class="completed" *ngIf="complete">
-    <p>Технология успешно удалена</p>
+    <p>Технология {{deletedTech}} успешно удалена </p>
     <div class="loading" (load) = '$event' tech-styles></div>
   </div>
 </div>
