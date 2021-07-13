@@ -16,9 +16,9 @@ div, p, h1, h2, label, a {
 		"menu     header   "
     	"menu     content  "
     	"menu     footer   ";
-  width: 100vw;
-  height: 100vh;
-  grid-template-rows: 2fr 8fr 1fr ;
+  max-width: 100vw;
+  max-height: 100vh;
+  grid-template-rows: 1fr 8fr 1fr ;
   grid-template-columns: 1fr 15fr;
   /*overflow-y: hidden;*/
   gap: 0;
@@ -27,8 +27,14 @@ div, p, h1, h2, label, a {
 
 .content {
   grid-area: content;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  /*flex-direction: column;*/
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  max-height: 100%;
+  /*width: 100%;*/
+  /*height: 100%;*/
 }
 
 
@@ -85,7 +91,7 @@ div, p, h1, h2, label, a {
 .menu img {
   width: 70px;
   height: 75px;
-  margin: 10px;
+  margin: 10px 0;
   cursor: pointer;
 }
 
@@ -94,12 +100,15 @@ div, p, h1, h2, label, a {
   /*margin-top: 1px;*/
   /*width: 100%;*/
   /*height: 50px;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-top: 1px solid rgb(22, 155, 213);
 
 }
 
 .footer p {
-  margin-top: 15px;
+  /*margin-top: 15px;*/
   text-align: center;
   color: rgba(0, 0, 0, 0.87);
   font-family: Roboto, "Helvetica Neue", sans-serif;

@@ -1,26 +1,46 @@
 <div class="container">
-  <div class="search-box">
-    <p class="search">Поиск</p>
-    <input type="text" class="search-input" (input)="getInput($event)" value="">
-    <button class="btn-to-search" (click)="submitSearch()">Найти</button>
-  </div>
+    <!--        <table class="table-for-tech">-->
+    <!--            <thead>-->
+    <!--            <tr>-->
+    <!--                <th>№ п/п</th>-->
+    <!--                <th>НАЗВАНИЕ</th>-->
+    <!--            </tr>-->
+    <!--            </thead>-->
+    <!--            <tbody>-->
+    <!--            <tr *ngFor="let tech of searchTechnologies; let idx = index">-->
+    <!--                <td>{{idx + 1}}</td>-->
+    <!--                <td class="edit-tech" (click)="editTechnology(tech.id, tech.name)">{{tech.name}}</td>-->
+    <!--            </tr>-->
+    <!--            </tbody>-->
+    <!--        </table>-->
+    <div class="mat-elevation-z8 scrollTable">
+        <table mat-table [dataSource]="technologiesData" matSort>
+            <ng-container matColumnDef="index">
+                <th mat-header-cell *matHeaderCellDef>N</th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    {{i + 1}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Название</th>
+                <td mat-cell class="edit-tech"
+                    *matCellDef="let element"
+                    (click)="editTechnology(element.id, element.name)"
+                >{{element.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="loading">
+                <th mat-footer-cell *matFooterCellDef colspan="5">
+                    Загрузка...
+                </th>
+            </ng-container>
 
-  <table class="table-for-tech">
-    <thead>
-      <tr>
-        <th>№ п/п</th>
-        <th>НАЗВАНИЕ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let tech of searchTechnologies; let idx = index">
-        <td>{{idx+1}}</td>
-        <td class="edit-tech" (click)="editTechnology(tech.id, tech.name)">{{tech.name}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="completed" *ngIf="complete">
-    <p>Технология {{deletedTech}} успешно удалена </p>
-    <div class="loading" (load) = '$event' tech-styles></div>
-  </div>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': technologiesData!=null}"></tr>
+        </table>
+        <div class="completed" *ngIf="complete">
+            <p>Технология {{deletedTech}} успешно удалена </p>
+            <div class="loading" (load)='$event' tech-styles></div>
+        </div>
+    </div>
 </div>

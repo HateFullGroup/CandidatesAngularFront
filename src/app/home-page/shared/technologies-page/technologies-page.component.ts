@@ -3,6 +3,7 @@ import {CandidatesService} from "../services/candidates.service";
 import {getTechnologies, Tech} from "../../../shared/interfaces";
 import {TitleService} from "../services/title.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-technologies-page',
@@ -23,6 +24,9 @@ export class TechnologiesPageComponent implements OnInit {
   widthLoading = 100
   complete = false
   deletedTech!: string;
+
+  technologiesData!: MatTableDataSource<any>
+  displayedColumns: string[] = ['index', 'name']
 
   constructor(all: CandidatesService, title: TitleService, router: Router, query: ActivatedRoute) {
     this.router = router
@@ -60,8 +64,8 @@ export class TechnologiesPageComponent implements OnInit {
   fetchTechnologies() {
     this.candidatesService.getTechnologies()
         .subscribe(src => {
-          this.technology = src.results
-          this.searchTechnologies = this.technology
+          this.technologiesData = new MatTableDataSource<any>(src.results)
+          // this.searchTechnologies = this.technology
         })
   }
 

@@ -32,3 +32,8 @@ tr .tech-name {
     margin-right: 5px;
     font-size: 13px;
 }
+
+.scrollTable {
+    overflow: auto;
+    max-height: 500px;
+}

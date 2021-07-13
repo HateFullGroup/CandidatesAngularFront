@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+
 }
 
 div, p, h1, h2, label, a {
@@ -11,7 +12,11 @@ div, p, h1, h2, label, a {
   margin: 0 auto;
   margin-top: 15%;
   max-width: 200px;
-
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  /*max-height: 100vh;*/
+  overflow: hidden;
 }
 
 .auth h1 {
@@ -25,7 +30,7 @@ div, p, h1, h2, label, a {
 }
 
 .auth .input-form {
-  max-width: 100%;
+  /*max-width: 100%;*/
 }
 
 .input-text {
